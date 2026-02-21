@@ -29,15 +29,40 @@ body.scrollable{overflow-y:auto;overflow-x:hidden}
 .click-zone{
   position:absolute;top:0;bottom:0;
   z-index:10;cursor:pointer;
-  transition:background .3s ease;
 }
 .click-zone-left{left:0;width:50%}
 .click-zone-right{right:0;width:50%}
-/* Tap feedback: subtle bright flash */
-.click-zone.tapped{
-  background:radial-gradient(circle at var(--tx,50%) var(--ty,50%),rgba(255,255,255,.35) 0%,transparent 60%);
-  transition:none;
+
+/* Feedback overlays */
+.fb-bright{
+  position:absolute;top:0;bottom:0;width:50%;
+  z-index:15;pointer-events:none;opacity:0;
+  transition:opacity .5s ease;
 }
+.fb-bright.left{left:0;background:linear-gradient(90deg,rgba(255,255,255,.18) 0%,rgba(255,255,255,.06) 100%)}
+.fb-bright.right{right:0;background:linear-gradient(-90deg,rgba(255,255,255,.18) 0%,rgba(255,255,255,.06) 100%)}
+.fb-dark{
+  position:absolute;top:0;bottom:0;width:50%;
+  z-index:15;pointer-events:none;opacity:0;
+  transition:opacity .5s ease;
+}
+.fb-dark.left{left:0;background:rgba(0,0,0,.22)}
+.fb-dark.right{right:0;background:rgba(0,0,0,.22)}
+.fb-bright.on,.fb-dark.on{opacity:1;transition:opacity .12s ease}
+
+.fb-label{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%) scale(.7);
+  z-index:18;pointer-events:none;
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(32px,9vw,44px);
+  color:#fff;
+  text-shadow:0 2px 24px rgba(0,0,0,.4);
+  opacity:0;
+  transition:all .4s cubic-bezier(.22,.61,.36,1);
+}
+.fb-label.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.fb-label.out{opacity:0;transform:translate(-50%,-50%) scale(1.08);transition:all .6s ease}
 
 /* --- Ornament Divider --- */
 .divider{
@@ -228,6 +253,12 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
   <!-- Invisible click zones: left=Deutsch, right=Türkçe -->
   <div class="click-zone click-zone-left" id="zoneLeft"></div>
   <div class="click-zone click-zone-right" id="zoneRight"></div>
+  <!-- Feedback overlays -->
+  <div class="fb-bright left" id="fbBL"></div>
+  <div class="fb-dark right" id="fbDR"></div>
+  <div class="fb-bright right" id="fbBR"></div>
+  <div class="fb-dark left" id="fbDL"></div>
+  <div class="fb-label" id="fbLabel">Deutsch</div>
   <button class="skip-btn" id="skipBtn">Überspringen</button>
 </div>
 
@@ -325,21 +356,31 @@ vid.addEventListener('loadedmetadata',function(){vid.currentTime=0.001});
 vid.currentTime=0.001;
 
 /* ===== TAP LEFT = DEUTSCH, TAP RIGHT = TÜRKÇE ===== */
-document.getElementById('zoneLeft').addEventListener('click',function(e){tapFeedback(e,this);pick('de')});
-document.getElementById('zoneRight').addEventListener('click',function(e){tapFeedback(e,this);pick('tr')});
-
-function tapFeedback(e,el){
-  var r=el.getBoundingClientRect();
-  el.style.setProperty('--tx',((e.clientX-r.left)/r.width*100)+'%');
-  el.style.setProperty('--ty',((e.clientY-r.top)/r.height*100)+'%');
-  el.classList.add('tapped');
-  setTimeout(function(){el.classList.remove('tapped')},500);
-}
+document.getElementById('zoneLeft').addEventListener('click',function(){pick('de')});
+document.getElementById('zoneRight').addEventListener('click',function(){pick('tr')});
 
 function pick(l){
   if(chosen)return;
   chosen=true;
   lang=l;
+
+  /* -- Visual feedback: glow chosen side, darken other, show label -- */
+  var bright=l==='de'?document.getElementById('fbBL'):document.getElementById('fbBR');
+  var dark=l==='de'?document.getElementById('fbDR'):document.getElementById('fbDL');
+  var lbl=document.getElementById('fbLabel');
+
+  lbl.textContent=l==='de'?'Deutsch':'Türkçe';
+  bright.classList.add('on');
+  dark.classList.add('on');
+  lbl.classList.add('on');
+
+  /* Fade out feedback after 1.2s */
+  setTimeout(function(){
+    lbl.classList.remove('on');
+    lbl.classList.add('out');
+    bright.classList.remove('on');
+    dark.classList.remove('on');
+  },1200);
 
   /* Apply language */
   document.querySelectorAll('[data-'+l+']').forEach(function(el){
@@ -350,15 +391,17 @@ function pick(l){
   document.getElementById('zoneLeft').style.display='none';
   document.getElementById('zoneRight').style.display='none';
   document.getElementById('skipBtn').textContent=l==='de'?'Überspringen':'Atla';
-  document.getElementById('skipBtn').classList.add('show');
 
-  /* Unmute and play video from start */
-  vid.currentTime=0;
-  vid.muted=false;
-  vid.play().catch(function(){
-    vid.muted=true;
-    vid.play().catch(function(){enterSite()});
-  });
+  /* Delay video start slightly so feedback is visible */
+  setTimeout(function(){
+    document.getElementById('skipBtn').classList.add('show');
+    vid.currentTime=0;
+    vid.muted=false;
+    vid.play().catch(function(){
+      vid.muted=true;
+      vid.play().catch(function(){enterSite()});
+    });
+  },800);
 }
 
 /* Video ends → enter site */
