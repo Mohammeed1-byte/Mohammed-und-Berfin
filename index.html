@@ -29,9 +29,62 @@ body.scrollable{overflow-y:auto;overflow-x:hidden}
 .click-zone{
   position:absolute;top:0;bottom:0;
   z-index:10;cursor:pointer;
+  transition:background .3s ease;
 }
 .click-zone-left{left:0;width:50%}
 .click-zone-right{right:0;width:50%}
+/* Tap feedback: subtle bright flash */
+.click-zone.tapped{
+  background:radial-gradient(circle at var(--tx,50%) var(--ty,50%),rgba(255,255,255,.35) 0%,transparent 60%);
+  transition:none;
+}
+
+/* --- Ornament Divider --- */
+.divider{
+  display:flex;align-items:center;justify-content:center;
+  gap:14px;
+  padding:10px 24px;
+  max-width:400px;
+  margin:0 auto;
+}
+.divider-line{
+  flex:1;height:1px;
+  background:linear-gradient(90deg,transparent,#c5c0b8 40%,#c5c0b8 60%,transparent);
+}
+.divider-icon{
+  font-size:8px;
+  color:#c5c0b8;
+  letter-spacing:6px;
+  flex-shrink:0;
+}
+
+/* --- Showcase Video --- */
+.vid-showcase{
+  padding:0 24px;
+  max-width:420px;
+  margin:0 auto;
+}
+.vid-frame{
+  position:relative;
+  border-radius:6px;
+  overflow:hidden;
+  background:#1a1714;
+  box-shadow:0 20px 60px -12px rgba(0,0,0,.2),0 8px 24px -6px rgba(0,0,0,.1);
+  aspect-ratio:9/16;
+}
+.vid-frame video{
+  width:100%;height:100%;
+  object-fit:cover;
+  display:block;
+  border-radius:6px;
+}
+/* Subtle inner border glow */
+.vid-frame::after{
+  content:'';position:absolute;inset:0;
+  border-radius:6px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);
+  pointer-events:none;
+}
 /* Skip button (appears after click) */
 .skip-btn{
   position:absolute;bottom:max(24px,4vh);right:24px;
@@ -201,7 +254,11 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 
 <div class="wel rv"><div class="ws" data-de="Schön, dass ihr hier seid" data-tr="Burada olduğunuz için çok mutluyuz">Schön, dass ihr hier seid</div><p class="wt" data-de="Mit großer Freude laden wir euch ein, unseren unvergesslichen Tag mit uns zu feiern. Gemeinsam möchten wir diesen besonderen Moment teilen – voller Liebe, Freude und wunderschöner Erinnerungen." data-tr="Sizi unutulmaz günümüzü birlikte kutlamaya davet etmekten büyük mutluluk duyuyoruz. Bu özel anı birlikte paylaşmak istiyoruz – sevgi, neşe ve güzel anılarla dolu.">Mit großer Freude laden wir euch ein, unseren unvergesslichen Tag mit uns zu feiern. Gemeinsam möchten wir diesen besonderen Moment teilen – voller Liebe, Freude und wunderschöner Erinnerungen.</p><div class="wl"></div></div>
 
+<div class="divider rv"><div class="divider-line"></div><div class="divider-icon">◆</div><div class="divider-line"></div></div>
+
 <div class="cdw" id="countdown"><div class="rv"><div class="sl" data-de="Wir zählen die Tage" data-tr="Günleri Sayıyoruz">Wir zählen die Tage</div><div class="sh" data-de="Bis wir Ja sagen" data-tr="Evet diyene kadar">Bis wir Ja sagen</div><div class="sln"></div></div><div class="cd rv"><div class="cb"><div class="cn" id="cD">000</div><div class="cl" data-de="Tage" data-tr="Gün">Tage</div></div><div class="cb"><div class="cn" id="cH">00</div><div class="cl" data-de="Stunden" data-tr="Saat">Stunden</div></div><div class="cb"><div class="cn" id="cM">00</div><div class="cl" data-de="Minuten" data-tr="Dakika">Minuten</div></div><div class="cb"><div class="cn" id="cS">00</div><div class="cl" data-de="Sekunden" data-tr="Saniye">Sekunden</div></div></div></div>
+
+<div class="divider rv"><div class="divider-line"></div><div class="divider-icon">◆</div><div class="divider-line"></div></div>
 
 <div class="sec" id="sched"><div class="rv"><div class="sl" data-de="Der Tag" data-tr="O Gün">Der Tag</div><div class="sh" data-de="Ablauf" data-tr="Program Akışı">Ablauf</div><div class="sln"></div></div><div class="scl rv">
 <div class="sci"><div class="sct">17:00</div><div class="scc"><div class="sce" data-de="Empfang" data-tr="Karşılama">Empfang</div><div class="scd" data-de="Begrüßung der Gäste" data-tr="Misafirlerin karşılanması">Begrüßung der Gäste</div></div></div>
@@ -210,19 +267,37 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 <div class="sci"><div class="sct">21:00</div><div class="scc"><div class="sce" data-de="Party & Tanz" data-tr="Parti & Dans">Party & Tanz</div><div class="scd" data-de="Feiert mit uns die ganze Nacht!" data-tr="Bütün gece bizimle kutlayın!">Feiert mit uns die ganze Nacht!</div></div></div>
 </div></div>
 
+<div class="divider rv"><div class="divider-line"></div><div class="divider-icon">◆</div><div class="divider-line"></div></div>
+
 <div class="qb rv"><div class="qt" data-de="Zwei Seelen und ein Gedanke, zwei Herzen und ein Schlag" data-tr="İki ruh ve bir düşünce, iki kalp ve bir atış">Zwei Seelen und ein Gedanke, zwei Herzen und ein Schlag</div><div class="qa">Friedrich Halm</div></div>
+
+<!-- Showcase Video -->
+<div class="vid-showcase rv" style="padding-top:60px;padding-bottom:60px">
+  <div class="vid-frame">
+    <video id="showVid" playsinline webkit-playsinline muted loop preload="metadata">
+      <source src="video.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+
+<div class="divider rv"><div class="divider-line"></div><div class="divider-icon">◆</div><div class="divider-line"></div></div>
 
 <div class="sec" id="dress"><div class="rv"><div class="sl" data-de="Bitte beachten" data-tr="Lütfen dikkat">Bitte beachten</div><div class="sh" data-de="Dresscode" data-tr="Kıyafet Kodu">Dresscode</div><div class="sln"></div></div><div class="dc rv"><div class="dt">GALA</div><div class="ds" data-de="Festliche Abendgarderobe" data-tr="Resmi gece kıyafeti">Festliche Abendgarderobe</div></div><p class="st rv" style="margin-top:22px" data-de="Herren im Anzug oder Smoking, Damen im langen Abendkleid." data-tr="Beyler takım elbise veya smokin, bayanlar uzun gece elbisesi.">Herren im Anzug oder Smoking, Damen im langen Abendkleid.</p></div>
 
+<div class="divider rv"><div class="divider-line"></div><div class="divider-icon">◆</div><div class="divider-line"></div></div>
+
 <div class="sec" id="loc"><div class="rv"><div class="sl" data-de="Wo wir feiern" data-tr="Nerede kutluyoruz">Wo wir feiern</div><div class="sh" data-de="Location" data-tr="Mekan">Location</div><div class="sln"></div></div><p class="st rv" style="font-weight:500;font-size:19px">Royal Dream Event GmbH</p><p class="st rv" style="margin-top:4px;font-size:14px" data-de="Essen · Nordrhein-Westfalen" data-tr="Essen · Kuzey Ren-Vestfalya">Essen · Nordrhein-Westfalen</p><div class="mf rv" style="margin-top:20px"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d79510.53355535505!2d6.857587085646696!3d51.4819441458204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b8e9916f2337b5%3A0xb4e0f402be4e191d!2sRoyal%20Dream%20Event%20GmbH!5e0!3m2!1sde!2sde!4v1771241532927!5m2!1sde!2sde" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div><a href="https://www.google.com/maps/place/Royal+Dream+Event+GmbH" target="_blank" class="bo rv" data-de="Route planen" data-tr="Yol tarifi al">Route planen</a></div>
+
+<div class="divider rv"><div class="divider-line"></div><div class="divider-icon">◆</div><div class="divider-line"></div></div>
 
 <div class="sec" id="faq"><div class="rv"><div class="sl" data-de="Noch Fragen?" data-tr="Sorularınız mı var?">Noch Fragen?</div><div class="sh" data-de="Häufige Fragen" data-tr="Sık Sorulan Sorular">Häufige Fragen</div><div class="sln"></div></div><div class="fl rv">
 <div class="fi" onclick="this.classList.toggle('op')"><div class="fq" data-de="Gibt es Parkplätze vor Ort?" data-tr="Orada otopark var mı?">Gibt es Parkplätze vor Ort?</div><div class="fa" data-de="Ja, es stehen ausreichend kostenlose Parkplätze direkt an der Location zur Verfügung." data-tr="Evet, mekânda yeterli ücretsiz otopark mevcuttur.">Ja, es stehen ausreichend kostenlose Parkplätze direkt an der Location zur Verfügung.</div></div>
 <div class="fi" onclick="this.classList.toggle('op')"><div class="fq" data-de="Dürfen wir Kinder mitbringen?" data-tr="Çocukları getirebilir miyiz?">Dürfen wir Kinder mitbringen?</div><div class="fa" data-de="Natürlich! Kinder sind herzlich willkommen. Bitte gebt bei der Zusage die Anzahl der Personen an." data-tr="Tabii ki! Çocuklar hoş geldiniz. Lütfen katılım formunda kişi sayısını belirtin.">Natürlich! Kinder sind herzlich willkommen. Bitte gebt bei der Zusage die Anzahl der Personen an.</div></div>
 <div class="fi" onclick="this.classList.toggle('op')"><div class="fq" data-de="Was ist der Dresscode?" data-tr="Kıyafet kodu nedir?">Was ist der Dresscode?</div><div class="fa" data-de="Wir feiern im Gala-Stil. Herren im Anzug oder Smoking, Damen im langen Abendkleid." data-tr="Gala tarzında kutluyoruz. Beyler takım elbise veya smokin, bayanlar uzun gece elbisesi.">Wir feiern im Gala-Stil. Herren im Anzug oder Smoking, Damen im langen Abendkleid.</div></div>
 <div class="fi" onclick="this.classList.toggle('op')"><div class="fq" data-de="Bis wann sollen wir zusagen?" data-tr="Ne zamana kadar cevap vermeliyiz?">Bis wann sollen wir zusagen?</div><div class="fa" data-de="Bitte gebt uns bis zum 30. April 2026 Bescheid." data-tr="Lütfen 30 Nisan 2026'ya kadar bize haber verin.">Bitte gebt uns bis zum 30. April 2026 Bescheid.</div></div>
-<div class="fi" onclick="this.classList.toggle('op')"><div class="fq" data-de="Gibt es eine Geschenkeliste?" data-tr="Hediye listesi var mı?">Gibt es eine Geschenkeliste?</div><div class="fa" data-de="Das Wichtigste ist, dass ihr mit uns feiert! Wenn ihr uns etwas schenken möchtet, freuen wir uns über einen Beitrag zu unserer gemeinsamen Zukunft." data-tr="En önemlisi bizimle kutlamanız! Ortak geleceğimize katkınızdan mutluluk duyarız.">Das Wichtigste ist, dass ihr mit uns feiert! Wenn ihr uns etwas schenken möchtet, freuen wir uns über einen Beitrag zu unserer gemeinsamen Zukunft.</div></div>
 </div></div>
+
+<div class="divider rv"><div class="divider-line"></div><div class="divider-icon">◆</div><div class="divider-line"></div></div>
 
 <div class="rw" id="rsvp"><div class="rv"><div class="sl" data-de="Feiert ihr mit?" data-tr="Bizimle kutlayacak mısınız?">Feiert ihr mit?</div><div class="sh" data-de="Zusage" data-tr="Katılım">RSVP</div><div class="sln"></div><p class="st" data-de="Bitte teilt uns bis zum 30. April 2026 mit, ob ihr dabei seid." data-tr="Lütfen 30 Nisan 2026'ya kadar katılıp katılmayacağınızı bildirin.">Bitte teilt uns bis zum 30. April 2026 mit, ob ihr dabei seid.</p></div>
 <div class="rf rv" id="rForm">
@@ -250,8 +325,16 @@ vid.addEventListener('loadedmetadata',function(){vid.currentTime=0.001});
 vid.currentTime=0.001;
 
 /* ===== TAP LEFT = DEUTSCH, TAP RIGHT = TÜRKÇE ===== */
-document.getElementById('zoneLeft').addEventListener('click',function(){pick('de')});
-document.getElementById('zoneRight').addEventListener('click',function(){pick('tr')});
+document.getElementById('zoneLeft').addEventListener('click',function(e){tapFeedback(e,this);pick('de')});
+document.getElementById('zoneRight').addEventListener('click',function(e){tapFeedback(e,this);pick('tr')});
+
+function tapFeedback(e,el){
+  var r=el.getBoundingClientRect();
+  el.style.setProperty('--tx',((e.clientX-r.left)/r.width*100)+'%');
+  el.style.setProperty('--ty',((e.clientY-r.top)/r.height*100)+'%');
+  el.classList.add('tapped');
+  setTimeout(function(){el.classList.remove('tapped')},500);
+}
 
 function pick(l){
   if(chosen)return;
@@ -327,6 +410,15 @@ function tick(){
 document.querySelectorAll('.rv').forEach(function(el){
   new IntersectionObserver(function(e){if(e[0].isIntersecting)el.classList.add('go')},{threshold:.1}).observe(el);
 });
+
+/* ===== SHOWCASE VIDEO: auto-play when scrolled into view ===== */
+var sv=document.getElementById('showVid');
+if(sv){
+  new IntersectionObserver(function(entries){
+    if(entries[0].isIntersecting){sv.play().catch(function(){})}
+    else{sv.pause()}
+  },{threshold:.3}).observe(sv);
+}
 
 /* ===== RSVP ===== */
 function rsvp(){
