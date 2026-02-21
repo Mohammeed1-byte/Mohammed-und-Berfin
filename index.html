@@ -97,12 +97,6 @@ body.scrollable{overflow-y:auto;overflow-x:hidden}
   box-shadow:0 20px 60px -12px rgba(0,0,0,.2),0 8px 24px -6px rgba(0,0,0,.1);
   aspect-ratio:9/16;
 }
-.vid-frame video{
-  width:100%;height:100%;
-  object-fit:cover;
-  display:block;
-  border-radius:6px;
-}
 /* Subtle inner border glow */
 .vid-frame::after{
   content:'';position:absolute;inset:0;
@@ -166,6 +160,14 @@ body.scrollable{overflow-y:auto;overflow-x:hidden}
 
 /* --- Countdown --- */
 .cdw{padding:40px 24px 70px;text-align:center}
+.cd-date{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(20px,5vw,26px);
+  font-weight:400;font-style:italic;
+  color:#4a4540;
+  margin-top:16px;margin-bottom:4px;
+  letter-spacing:1px;
+}
 .cd{display:flex;justify-content:center;gap:10px;margin-top:28px}
 .cb{min-width:68px;padding:20px 10px 16px;background:#fff;border:1px solid rgba(0,0,0,.05);border-radius:2px}
 .cn{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,7vw,42px);font-weight:300;color:#2e2a26;line-height:1.1}
@@ -287,7 +289,7 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 
 <div class="divider rv"><div class="divider-line"></div><div class="divider-icon">◆</div><div class="divider-line"></div></div>
 
-<div class="cdw" id="countdown"><div class="rv"><div class="sl" data-de="Wir zählen die Tage" data-tr="Günleri Sayıyoruz">Wir zählen die Tage</div><div class="sh" data-de="Bis wir Ja sagen" data-tr="Evet diyene kadar">Bis wir Ja sagen</div><div class="sln"></div></div><div class="cd rv"><div class="cb"><div class="cn" id="cD">000</div><div class="cl" data-de="Tage" data-tr="Gün">Tage</div></div><div class="cb"><div class="cn" id="cH">00</div><div class="cl" data-de="Stunden" data-tr="Saat">Stunden</div></div><div class="cb"><div class="cn" id="cM">00</div><div class="cl" data-de="Minuten" data-tr="Dakika">Minuten</div></div><div class="cb"><div class="cn" id="cS">00</div><div class="cl" data-de="Sekunden" data-tr="Saniye">Sekunden</div></div></div></div>
+<div class="cdw" id="countdown"><div class="rv"><div class="sl" data-de="Wir zählen die Tage" data-tr="Günleri Sayıyoruz">Wir zählen die Tage</div><div class="sh" data-de="Bis wir Ja sagen" data-tr="Evet diyene kadar">Bis wir Ja sagen</div><div class="sln"></div><div class="cd-date" data-de="31. Mai 2026 · 17:00 Uhr" data-tr="31 Mayıs 2026 · Saat 17:00">31. Mai 2026 · 17:00 Uhr</div></div><div class="cd rv"><div class="cb"><div class="cn" id="cD">000</div><div class="cl" data-de="Tage" data-tr="Gün">Tage</div></div><div class="cb"><div class="cn" id="cH">00</div><div class="cl" data-de="Stunden" data-tr="Saat">Stunden</div></div><div class="cb"><div class="cn" id="cM">00</div><div class="cl" data-de="Minuten" data-tr="Dakika">Minuten</div></div><div class="cb"><div class="cn" id="cS">00</div><div class="cl" data-de="Sekunden" data-tr="Saniye">Sekunden</div></div></div></div>
 
 <div class="divider rv"><div class="divider-line"></div><div class="divider-icon">◆</div><div class="divider-line"></div></div>
 
@@ -305,9 +307,7 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 <!-- Showcase Video -->
 <div class="vid-showcase rv" style="padding-top:60px;padding-bottom:60px">
   <div class="vid-frame">
-    <video id="showVid" playsinline webkit-playsinline muted loop preload="metadata">
-      <source src="video.mp4" type="video/mp4">
-    </video>
+    <img src="showcase.gif" alt="" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px">
   </div>
 </div>
 
@@ -323,7 +323,7 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 
 <div class="sec" id="faq"><div class="rv"><div class="sl" data-de="Noch Fragen?" data-tr="Sorularınız mı var?">Noch Fragen?</div><div class="sh" data-de="Häufige Fragen" data-tr="Sık Sorulan Sorular">Häufige Fragen</div><div class="sln"></div></div><div class="fl rv">
 <div class="fi" onclick="this.classList.toggle('op')"><div class="fq" data-de="Gibt es Parkplätze vor Ort?" data-tr="Orada otopark var mı?">Gibt es Parkplätze vor Ort?</div><div class="fa" data-de="Ja, es stehen ausreichend kostenlose Parkplätze direkt an der Location zur Verfügung." data-tr="Evet, mekânda yeterli ücretsiz otopark mevcuttur.">Ja, es stehen ausreichend kostenlose Parkplätze direkt an der Location zur Verfügung.</div></div>
-<div class="fi" onclick="this.classList.toggle('op')"><div class="fq" data-de="Dürfen wir Kinder mitbringen?" data-tr="Çocukları getirebilir miyiz?">Dürfen wir Kinder mitbringen?</div><div class="fa" data-de="Natürlich! Kinder sind herzlich willkommen. Bitte gebt bei der Zusage die Anzahl der Personen an." data-tr="Tabii ki! Çocuklar hoş geldiniz. Lütfen katılım formunda kişi sayısını belirtin.">Natürlich! Kinder sind herzlich willkommen. Bitte gebt bei der Zusage die Anzahl der Personen an.</div></div>
+<div class="fi" onclick="this.classList.toggle('op')"><div class="fq" data-de="Dürfen wir Kinder mitbringen?" data-tr="Çocukları getirebilir miyiz?">Dürfen wir Kinder mitbringen?</div><div class="fa" data-de="Natürlich! Kinder sind herzlich willkommen. Es gibt einen separaten Spieleraum mit Kinderbetreuung – inklusive PS4 und weiteren Spielmöglichkeiten. Bitte gebt bei der Zusage die Anzahl der Personen an." data-tr="Tabii ki! Çocuklar hoş geldiniz. PS4 ve diğer oyun imkânlarıyla birlikte ayrı bir oyun odası ve çocuk bakımı mevcuttur. Lütfen katılım formunda kişi sayısını belirtin.">Natürlich! Kinder sind herzlich willkommen. Es gibt einen separaten Spieleraum mit Kinderbetreuung – inklusive PS4 und weiteren Spielmöglichkeiten. Bitte gebt bei der Zusage die Anzahl der Personen an.</div></div>
 <div class="fi" onclick="this.classList.toggle('op')"><div class="fq" data-de="Was ist der Dresscode?" data-tr="Kıyafet kodu nedir?">Was ist der Dresscode?</div><div class="fa" data-de="Wir feiern im Gala-Stil. Herren im Anzug oder Smoking, Damen im langen Abendkleid." data-tr="Gala tarzında kutluyoruz. Beyler takım elbise veya smokin, bayanlar uzun gece elbisesi.">Wir feiern im Gala-Stil. Herren im Anzug oder Smoking, Damen im langen Abendkleid.</div></div>
 <div class="fi" onclick="this.classList.toggle('op')"><div class="fq" data-de="Bis wann sollen wir zusagen?" data-tr="Ne zamana kadar cevap vermeliyiz?">Bis wann sollen wir zusagen?</div><div class="fa" data-de="Bitte gebt uns bis zum 30. April 2026 Bescheid." data-tr="Lütfen 30 Nisan 2026'ya kadar bize haber verin.">Bitte gebt uns bis zum 30. April 2026 Bescheid.</div></div>
 </div></div>
@@ -455,13 +455,7 @@ document.querySelectorAll('.rv').forEach(function(el){
 });
 
 /* ===== SHOWCASE VIDEO: auto-play when scrolled into view ===== */
-var sv=document.getElementById('showVid');
-if(sv){
-  new IntersectionObserver(function(entries){
-    if(entries[0].isIntersecting){sv.play().catch(function(){})}
-    else{sv.pause()}
-  },{threshold:.3}).observe(sv);
-}
+/* Using GIF now – plays automatically, no JS needed */
 
 /* ===== RSVP ===== */
 function rsvp(){
