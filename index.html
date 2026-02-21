@@ -171,13 +171,13 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 
 <!-- ===== VIDEO INTRO (the start page itself) ===== -->
 <div id="videoIntro">
-  <video id="introVideo" playsinline webkit-playsinline preload="metadata" muted>
+  <video id="introVideo" playsinline webkit-playsinline preload="auto" muted>
     <source src="intro.mp4" type="video/mp4">
   </video>
   <!-- Invisible click zones: left=Deutsch, right=Türkçe -->
-  <div class="click-zone click-zone-left" onclick="chooseLang('de')"></div>
-  <div class="click-zone click-zone-right" onclick="chooseLang('tr')"></div>
-  <button class="skip-btn" id="skipBtn" onclick="skipVideo()">Überspringen</button>
+  <div class="click-zone click-zone-left" id="zoneLeft"></div>
+  <div class="click-zone click-zone-right" id="zoneRight"></div>
+  <button class="skip-btn" id="skipBtn">Überspringen</button>
 </div>
 
 <!-- ===== MUSIC ===== -->
@@ -251,49 +251,50 @@ var chosen=false;
 vid.addEventListener('loadedmetadata',function(){
   vid.currentTime=0.001;
 });
-/* Fallback: also try immediately */
 vid.currentTime=0.001;
 
-/* ===== 1. CLICK ON VIDEO → SET LANGUAGE + PLAY ===== */
-function chooseLang(l){
+/* ===== CLICK/TAP HANDLER (must be direct for mobile play) ===== */
+function handleZone(l,e){
+  e.preventDefault();
+  e.stopPropagation();
   if(chosen)return;
   chosen=true;
   lang=l;
 
-  /* Apply language to all elements */
-  document.querySelectorAll('[data-'+l+']').forEach(function(e){
-    e.textContent=e.getAttribute('data-'+l);
+  /* Apply language */
+  document.querySelectorAll('[data-'+l+']').forEach(function(el){
+    el.textContent=el.getAttribute('data-'+l);
   });
 
-  /* Update skip button */
+  /* Hide zones, show skip */
   document.getElementById('skipBtn').textContent=l==='de'?'Überspringen':'Atla';
-
-  /* Hide click zones, show skip button */
-  document.querySelectorAll('.click-zone').forEach(function(z){z.style.display='none'});
+  document.getElementById('zoneLeft').style.display='none';
+  document.getElementById('zoneRight').style.display='none';
   document.getElementById('skipBtn').classList.add('show');
 
-  /* Unmute and play from start */
-  vid.currentTime=0;
+  /* PLAY - must happen directly in user gesture callback */
   vid.muted=false;
-  vid.play().catch(function(){
-    /* If play blocked, try muted */
-    vid.muted=true;
-    vid.play().catch(function(){
-      enterSite();
-    });
-  });
+  vid.currentTime=0;
+  vid.play();
 }
 
-/* ===== 2. VIDEO ENDS → ENTER SITE ===== */
-vid.addEventListener('ended',function(){
-  enterSite();
+/* Attach both click and touchend for maximum compatibility */
+['click','touchend'].forEach(function(evt){
+  document.getElementById('zoneLeft').addEventListener(evt,function(e){handleZone('de',e)},{passive:false});
+  document.getElementById('zoneRight').addEventListener(evt,function(e){handleZone('tr',e)},{passive:false});
 });
 
 /* ===== SKIP ===== */
-function skipVideo(){
+document.getElementById('skipBtn').addEventListener('click',function(e){
+  e.stopPropagation();
   vid.pause();
   enterSite();
-}
+});
+
+/* ===== VIDEO ENDS → ENTER SITE ===== */
+vid.addEventListener('ended',function(){
+  enterSite();
+});
 
 /* ===== 3. ENTER MAIN SITE ===== */
 function enterSite(){
