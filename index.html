@@ -11,30 +11,28 @@ html,body{width:100%;height:100%;overflow:hidden}
 body{font-family:'Cormorant Garamond',serif;background:#fcfbf9;color:#2e2a26;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
 body.scrollable{overflow-y:auto;overflow-x:hidden}
 
-/* ===== VIDEO INTRO (IS the start page) ===== */
+/* ===== VIDEO INTRO ===== */
 #videoIntro{
-  position:fixed;inset:0;z-index:9000;
-  background:#000;
-  display:flex;align-items:center;justify-content:center;
+  position:fixed;top:0;left:0;
+  width:100vw;
+  height:100vh;height:100dvh;height:-webkit-fill-available;
+  z-index:9000;
+  background:#d5cfc5;
   overflow:hidden;
 }
 #introVideo{
-  position:absolute;
-  min-width:100%;min-height:100%;
-  width:auto;height:100%;
-  top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  object-fit:cover;
-  display:block;
+  position:absolute;top:-1px;left:-1px;
+  width:calc(100% + 2px);height:calc(100% + 2px);
+  object-fit:cover;display:block;
 }
-/* Invisible click zones over the video */
+/* Invisible click zones */
 .click-zone{
   position:absolute;top:0;bottom:0;
   z-index:10;cursor:pointer;
 }
 .click-zone-left{left:0;width:50%}
 .click-zone-right{right:0;width:50%}
-/* Skip button (appears after video starts) */
+/* Skip button (appears after click) */
 .skip-btn{
   position:absolute;bottom:max(24px,4vh);right:24px;
   font-family:'Josefin Sans',sans-serif;font-size:9px;font-weight:300;
@@ -169,15 +167,15 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 </head>
 <body>
 
-<!-- ===== VIDEO INTRO (the start page itself) ===== -->
+<!-- ===== VIDEO INTRO ===== -->
 <div id="videoIntro">
   <video id="introVideo" playsinline webkit-playsinline preload="metadata" muted>
     <source src="intro.mp4" type="video/mp4">
   </video>
   <!-- Invisible click zones: left=Deutsch, right=Türkçe -->
-  <div class="click-zone click-zone-left" onclick="chooseLang('de')"></div>
-  <div class="click-zone click-zone-right" onclick="chooseLang('tr')"></div>
-  <button class="skip-btn" id="skipBtn" onclick="skipVideo()">Überspringen</button>
+  <div class="click-zone click-zone-left" id="zoneLeft"></div>
+  <div class="click-zone click-zone-right" id="zoneRight"></div>
+  <button class="skip-btn" id="skipBtn">Überspringen</button>
 </div>
 
 <!-- ===== MUSIC ===== -->
@@ -248,54 +246,49 @@ var mp=false;
 var chosen=false;
 
 /* Force first frame to show on mobile */
-vid.addEventListener('loadedmetadata',function(){
-  vid.currentTime=0.001;
-});
-/* Fallback: also try immediately */
+vid.addEventListener('loadedmetadata',function(){vid.currentTime=0.001});
 vid.currentTime=0.001;
 
-/* ===== 1. CLICK ON VIDEO → SET LANGUAGE + PLAY ===== */
-function chooseLang(l){
+/* ===== TAP LEFT = DEUTSCH, TAP RIGHT = TÜRKÇE ===== */
+document.getElementById('zoneLeft').addEventListener('click',function(){pick('de')});
+document.getElementById('zoneRight').addEventListener('click',function(){pick('tr')});
+
+function pick(l){
   if(chosen)return;
   chosen=true;
   lang=l;
 
-  /* Apply language to all elements */
-  document.querySelectorAll('[data-'+l+']').forEach(function(e){
-    e.textContent=e.getAttribute('data-'+l);
+  /* Apply language */
+  document.querySelectorAll('[data-'+l+']').forEach(function(el){
+    el.textContent=el.getAttribute('data-'+l);
   });
 
-  /* Update skip button */
+  /* Hide click zones, show skip */
+  document.getElementById('zoneLeft').style.display='none';
+  document.getElementById('zoneRight').style.display='none';
   document.getElementById('skipBtn').textContent=l==='de'?'Überspringen':'Atla';
-
-  /* Hide click zones, show skip button */
-  document.querySelectorAll('.click-zone').forEach(function(z){z.style.display='none'});
   document.getElementById('skipBtn').classList.add('show');
 
-  /* Unmute and play from start */
+  /* Unmute and play video from start */
   vid.currentTime=0;
   vid.muted=false;
   vid.play().catch(function(){
-    /* If play blocked, try muted */
     vid.muted=true;
-    vid.play().catch(function(){
-      enterSite();
-    });
+    vid.play().catch(function(){enterSite()});
   });
 }
 
-/* ===== 2. VIDEO ENDS → ENTER SITE ===== */
-vid.addEventListener('ended',function(){
+/* Video ends → enter site */
+vid.addEventListener('ended',function(){enterSite()});
+
+/* ===== SKIP ===== */
+document.getElementById('skipBtn').addEventListener('click',function(e){
+  e.stopPropagation();
+  vid.pause();
   enterSite();
 });
 
-/* ===== SKIP ===== */
-function skipVideo(){
-  vid.pause();
-  enterSite();
-}
-
-/* ===== 3. ENTER MAIN SITE ===== */
+/* ===== ENTER MAIN SITE ===== */
 function enterSite(){
   var intro=document.getElementById('videoIntro');
   intro.style.transition='opacity .8s ease';
