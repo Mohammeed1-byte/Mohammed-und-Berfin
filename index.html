@@ -164,7 +164,7 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 
 <!-- ===== VIDEO INTRO (the start page itself) ===== -->
 <div id="videoIntro">
-  <video id="introVideo" playsinline webkit-playsinline preload="auto" muted autoplay>
+  <video id="introVideo" playsinline preload="auto">
     <source src="intro.mp4" type="video/mp4">
   </video>
   <!-- One single overlay handles both zones -->
@@ -242,12 +242,6 @@ var au=document.getElementById('bgMusic');
 var mp=false;
 var chosen=false;
 
-/* Pause immediately so first frame shows but video doesn't play through */
-vid.addEventListener('playing',function onFirstPlay(){
-  if(!chosen){vid.pause();vid.currentTime=0}
-  vid.removeEventListener('playing',onFirstPlay);
-});
-
 /* ===== TAP LEFT = DEUTSCH, TAP RIGHT = TÜRKÇE ===== */
 document.getElementById('zoneLeft').addEventListener('click',function(){pick('de')});
 document.getElementById('zoneRight').addEventListener('click',function(){pick('tr')});
@@ -255,29 +249,18 @@ document.getElementById('zoneRight').addEventListener('click',function(){pick('t
 function pick(l){
   if(chosen)return;
   chosen=true;
-  lang=l;
 
-  /* Apply language */
+  /* Safari: play() MUST be the first thing in the user gesture */
+  vid.play();
+
+  /* Now do the rest */
+  lang=l;
   document.querySelectorAll('[data-'+l+']').forEach(function(el){
     el.textContent=el.getAttribute('data-'+l);
   });
-
-  /* Hide overlay, show skip */
   document.getElementById('overlay').style.display='none';
   document.getElementById('skipBtn').textContent=l==='de'?'Überspringen':'Atla';
   document.getElementById('skipBtn').classList.add('show');
-
-  /* PLAY VIDEO with sound */
-  vid.muted=false;
-  vid.currentTime=0;
-  var p=vid.play();
-  if(p&&p.catch){
-    p.catch(function(){
-      /* Sound blocked? Play muted */
-      vid.muted=true;
-      vid.play().catch(function(){enterSite()});
-    });
-  }
 }
 
 /* ===== VIDEO ENDS ===== */
