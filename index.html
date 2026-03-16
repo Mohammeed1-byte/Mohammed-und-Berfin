@@ -438,15 +438,6 @@ var au=document.getElementById('bgMusic');
 var mp=false;
 var chosen=false;
 
-/* Start music immediately on page load */
-au.play().then(function(){
-  document.getElementById('muBtn').classList.add('on');
-  document.getElementById('muBtn').textContent='♫';mp=true;
-}).catch(function(){
-  /* Autoplay blocked by browser – button stays visible for manual start */
-  document.getElementById('muBtn').classList.add('on');
-});
-
 /* Force first frame to show on mobile */
 vid.addEventListener('loadedmetadata',function(){vid.currentTime=0.001});
 vid.currentTime=0.001;
@@ -483,6 +474,14 @@ function pick(l){
     el.textContent=el.getAttribute('data-'+l);
   });
 
+  /* Start music on user interaction */
+  au.play().then(function(){
+    document.getElementById('muBtn').classList.add('on');
+    document.getElementById('muBtn').textContent='♫';mp=true;
+  }).catch(function(){
+    document.getElementById('muBtn').classList.add('on');
+  });
+
   /* Hide click zones, show skip */
   document.getElementById('zoneLeft').style.display='none';
   document.getElementById('zoneRight').style.display='none';
@@ -492,11 +491,16 @@ function pick(l){
   setTimeout(function(){
     document.getElementById('skipBtn').classList.add('show');
     vid.currentTime=0;
-    vid.muted=false;
-    vid.play().catch(function(){
-      vid.muted=true;
-      vid.play().catch(function(){enterSite()});
-    });
+    vid.muted=true;
+    var playPromise=vid.play();
+    if(playPromise!==undefined){
+      playPromise.then(function(){
+        vid.muted=false;
+      }).catch(function(){
+        vid.muted=true;
+        vid.play().catch(function(){enterSite()});
+      });
+    }
   },800);
 }
 
@@ -516,11 +520,8 @@ function enterSite(){
   intro.style.transition='opacity .8s ease';
   intro.style.opacity='0';
 
-  /* Start music */
+  /* Music already started on language pick – just ensure button is visible */
   document.getElementById('muBtn').classList.add('on');
-  au.play().then(function(){
-    document.getElementById('muBtn').textContent='♫';mp=true;
-  }).catch(function(){});
 
   setTimeout(function(){
     intro.style.display='none';
