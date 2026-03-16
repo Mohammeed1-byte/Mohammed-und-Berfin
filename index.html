@@ -223,6 +223,17 @@ body.scrollable{overflow-y:auto;overflow-x:hidden;background:linear-gradient(180
 .fa{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease;font-size:15px;line-height:1.7;color:#4a4540;font-style:italic}
 .fi.op .fa{max-height:200px;padding-top:12px}
 
+/* --- Trauzeuginnen --- */
+.bm-row{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin-top:8px}
+.bm-card{display:flex;flex-direction:column;align-items:center;gap:10px}
+.bm-img-wrap{position:relative;width:140px;height:140px;border-radius:50%;overflow:hidden;background:rgba(255,255,255,.45);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.5);box-shadow:0 4px 24px rgba(0,0,0,.08),inset 0 1px 0 rgba(255,255,255,.6)}
+.bm-img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+.bm-placeholder{display:none;width:100%;height:100%;align-items:center;justify-content:center;font-family:'Great Vibes',cursive;font-size:56px;color:#c5c0b8;background:linear-gradient(135deg,#f7f3ee 0%,#ede8e0 100%)}
+.bm-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:#2e2a26;margin-top:4px}
+.bm-role{font-family:'Josefin Sans',sans-serif;font-size:9px;font-weight:300;letter-spacing:3px;text-transform:uppercase;color:#9e9890}
+.bm-mail{font-family:'Josefin Sans',sans-serif;font-size:10px;font-weight:300;letter-spacing:1px;color:#4a4540;text-decoration:none;border-bottom:1px solid rgba(0,0,0,.12);padding-bottom:1px;transition:color .3s,border-color .3s}
+.bm-mail:hover{color:#2e2a26;border-color:#2e2a26}
+
 /* --- RSVP --- */
 .rw{padding:70px 24px;text-align:center}
 .rf{max-width:380px;margin:28px auto 0;display:flex;flex-direction:column;gap:14px}
@@ -311,6 +322,7 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 <a href="#dress" data-de="Dresscode" data-tr="Kıyafet Kodu">Dresscode</a>
 <a href="#loc" data-de="Location" data-tr="Mekan">Location</a>
 <a href="#faq" data-de="FAQ" data-tr="SSS">FAQ</a>
+<a href="#bridesmaid" data-de="Trauzeuginnen" data-tr="Nedimeler">Trauzeuginnen</a>
 <a href="#rsvp" data-de="Zusage" data-tr="Katılım">RSVP</a>
 </div></nav>
 
@@ -368,6 +380,38 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 <div class="fi" onclick="this.classList.toggle('op')"><div class="fq" data-de="Was ist der Dresscode?" data-tr="Kıyafet kodu nedir?">Was ist der Dresscode?</div><div class="fa" data-de="Wir feiern im Gala-Stil. Herren im Anzug oder Smoking, Damen im langen Abendkleid." data-tr="Gala tarzında kutluyoruz. Beyler takım elbise veya smokin, bayanlar uzun gece elbisesi.">Wir feiern im Gala-Stil. Herren im Anzug oder Smoking, Damen im langen Abendkleid.</div></div>
 <div class="fi" onclick="this.classList.toggle('op')"><div class="fq" data-de="Bis wann sollen wir zusagen?" data-tr="Ne zamana kadar cevap vermeliyiz?">Bis wann sollen wir zusagen?</div><div class="fa" data-de="Bitte gebt uns bis zum 30. April 2026 Bescheid." data-tr="Lütfen 30 Nisan 2026'ya kadar bize haber verin.">Bitte gebt uns bis zum 30. April 2026 Bescheid.</div></div>
 </div></div>
+
+<div class="divider rv"><div class="divider-line"></div><div class="divider-icon">◆</div><div class="divider-line"></div></div>
+
+<!-- ===== TRAUZEUGINNEN ===== -->
+<div class="sec" id="bridesmaid">
+  <div class="rv">
+    <div class="sl" data-de="Eure Ansprechpartnerinnen" data-tr="İletişim Kişileriniz">Eure Ansprechpartnerinnen</div>
+    <div class="sh" data-de="Die Trauzeuginnen" data-tr="Nedimeler">Die Trauzeuginnen</div>
+    <div class="sln"></div>
+    <p class="st" style="margin-bottom:32px" data-de="Für besondere Wünsche, Allergien oder individuelle Planung – wendet euch gerne direkt an unsere Trauzeuginnen." data-tr="Özel istekler, alerjiler veya bireysel planlama için nedimelerimizle iletişime geçebilirsiniz.">Für besondere Wünsche, Allergien oder individuelle Planung – wendet euch gerne direkt an unsere Trauzeuginnen.</p>
+  </div>
+  <div class="bm-row rv">
+    <div class="bm-card">
+      <div class="bm-img-wrap">
+        <img src="nisrine.jpg" alt="Nisrine" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="bm-placeholder">N</div>
+      </div>
+      <div class="bm-name">Nisrine</div>
+      <div class="bm-role" data-de="Trauzeugin" data-tr="Nedime">Trauzeugin</div>
+      <a href="mailto:platzhalter@hotmail.de" class="bm-mail">platzhalter@hotmail.de</a>
+    </div>
+    <div class="bm-card">
+      <div class="bm-img-wrap">
+        <img src="lina.jpg" alt="Lina" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="bm-placeholder">L</div>
+      </div>
+      <div class="bm-name">Lina</div>
+      <div class="bm-role" data-de="Trauzeugin" data-tr="Nedime">Trauzeugin</div>
+      <a href="mailto:platzhalter2@hotmail.de" class="bm-mail">platzhalter2@hotmail.de</a>
+    </div>
+  </div>
+</div>
 
 <div class="divider rv"><div class="divider-line"></div><div class="divider-icon">◆</div><div class="divider-line"></div></div>
 
