@@ -292,7 +292,7 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 
 <!-- ===== VIDEO INTRO ===== -->
 <div id="videoIntro">
-  <video id="introVideo" playsinline webkit-playsinline preload="metadata" muted>
+  <video id="introVideo" playsinline webkit-playsinline preload="auto" muted>
     <source src="intro.mp4" type="video/mp4">
   </video>
   <!-- Invisible click zones: left=Deutsch, right=Türkçe -->
@@ -438,12 +438,6 @@ var au=document.getElementById('bgMusic');
 var mp=false;
 var chosen=false;
 
-/* Force first frame to show on mobile */
-vid.addEventListener('loadedmetadata',function(){
-  if(!chosen) vid.currentTime=0.001;
-});
-try{vid.currentTime=0.001}catch(e){}
-
 /* ===== TAP LEFT = DEUTSCH, TAP RIGHT = TÜRKÇE ===== */
 document.getElementById('zoneLeft').addEventListener('click',function(){pick('de')});
 document.getElementById('zoneRight').addEventListener('click',function(){pick('tr')});
@@ -489,16 +483,12 @@ function pick(l){
   document.getElementById('zoneRight').style.display='none';
   document.getElementById('skipBtn').textContent=l==='de'?'Überspringen':'Atla';
 
-  /* Delay video start slightly so feedback is visible */
+  /* Start video after short delay – keep muted (music handles audio) */
   setTimeout(function(){
     document.getElementById('skipBtn').classList.add('show');
-    vid.muted=false;
+    vid.muted=true;
     vid.currentTime=0;
-    vid.play().catch(function(){
-      /* If audio blocked, play muted at least */
-      vid.muted=true;
-      vid.play().catch(function(){enterSite()});
-    });
+    vid.play().catch(function(){enterSite()});
   },800);
 }
 
