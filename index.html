@@ -481,25 +481,26 @@ function pick(l){
   setTimeout(function(){document.getElementById('skipBtn').classList.add('show');},800);
 
   /* === Start Video + Musik gleichzeitig mit Ton im selben User-Gesture === */
-  vid.muted=false;
-  vid.currentTime=0;
-
-  var vPromise=vid.play();
-  var aPromise=au.play();
-
-  /* Musik-Button einblenden */
+  /* Strategie: Video STUMM starten (klappt immer), dann sofort unmuten.
+     Browser erlauben das Unmuten sobald play() läuft – direkte unmuted-Starts
+     werden hingegen nach ~1s vom Browser gestoppt (Autoplay Policy). */
   var muBtn=document.getElementById('muBtn');
   muBtn.classList.add('on');
 
-  if(aPromise!==undefined){
-    aPromise.then(function(){muBtn.textContent='♫';mp=true;}).catch(function(){});
-  }
+  /* Musik starten */
+  au.play().then(function(){muBtn.textContent='♫';mp=true;}).catch(function(){});
 
+  /* Video: stumm starten, nach erfolgreicher play()-Promise unmuten */
+  vid.muted=true;
+  vid.currentTime=0;
+  var vPromise=vid.play();
   if(vPromise!==undefined){
-    vPromise.catch(function(){
-      /* Falls Video mit Ton blockiert wird (z.B. iOS ohne Interaktion): stumm starten */
-      vid.muted=true;
-      vid.play().catch(function(){enterSite();});
+    vPromise.then(function(){
+      /* Jetzt läuft das Video – Ton einschalten */
+      vid.muted=false;
+    }).catch(function(){
+      /* Falls play() komplett fehlschlägt: direkt zur Site */
+      enterSite();
     });
   }
 }
