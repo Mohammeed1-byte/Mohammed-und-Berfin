@@ -292,7 +292,7 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 
 <!-- ===== VIDEO INTRO ===== -->
 <div id="videoIntro">
-  <video id="introVideo" playsinline webkit-playsinline preload="metadata" muted>
+  <video id="introVideo" playsinline webkit-playsinline preload="metadata">
     <source src="intro.mp4" type="video/mp4">
   </video>
   <!-- Invisible click zones: left=Deutsch, right=Türkçe -->
@@ -390,7 +390,7 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
       </div>
       <div class="bm-name">Nisrine</div>
       <div class="bm-role" data-de="Trauzeugin" data-tr="Nedime">Trauzeugin</div>
-      <a href="mailto:platzhalter@hotmail.de" class="bm-mail">platzhalter@hotmail.de</a>
+      <a href="/cdn-cgi/l/email-protection#c9b9a5a8bdb3a1a8a5bdacbb89a1a6bda4a8a0a5e7adac" class="bm-mail"><span class="__cf_email__" data-cfemail="1f6f737e6b65777e736b7a6d5f77706b727e7673317b7a">[email&#160;protected]</span></a>
       <a href="tel:01551234556" class="bm-mail">0155 1234556</a>
     </div>
     <div class="bm-card">
@@ -400,7 +400,7 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
       </div>
       <div class="bm-name">Lina</div>
       <div class="bm-role" data-de="Trauzeugin" data-tr="Nedime">Trauzeugin</div>
-      <a href="mailto:platzhalter2@hotmail.de" class="bm-mail">platzhalter2@hotmail.de</a>
+      <a href="/cdn-cgi/l/email-protection#7f0f131e0b05171e130b1a0d4d3f17100b121e1613511b1a" class="bm-mail"><span class="__cf_email__" data-cfemail="25554944515f4d444951405717654d4a5148444c490b4140">[email&#160;protected]</span></a>
       <a href="tel:015561234567" class="bm-mail">0155 61234567</a>
     </div>
   </div>
@@ -431,7 +431,7 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 <footer class="foot"><div class="fn">Berfin & Mohammed</div><div class="fd">31 · 05 · 2026</div><div class="fh">♥</div></footer>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 var lang='de';
 var vid=document.getElementById('introVideo');
 var au=document.getElementById('bgMusic');
@@ -474,34 +474,34 @@ function pick(l){
     el.textContent=el.getAttribute('data-'+l);
   });
 
-  /* Start music on user interaction */
-  au.play().then(function(){
-    document.getElementById('muBtn').classList.add('on');
-    document.getElementById('muBtn').textContent='♫';mp=true;
-  }).catch(function(){
-    document.getElementById('muBtn').classList.add('on');
-  });
-
   /* Hide click zones, show skip */
   document.getElementById('zoneLeft').style.display='none';
   document.getElementById('zoneRight').style.display='none';
   document.getElementById('skipBtn').textContent=l==='de'?'Überspringen':'Atla';
+  setTimeout(function(){document.getElementById('skipBtn').classList.add('show');},800);
 
-  /* Delay video start slightly so feedback is visible */
-  setTimeout(function(){
-    document.getElementById('skipBtn').classList.add('show');
-    vid.currentTime=0;
-    vid.muted=true;
-    var playPromise=vid.play();
-    if(playPromise!==undefined){
-      playPromise.then(function(){
-        vid.muted=false;
-      }).catch(function(){
-        vid.muted=true;
-        vid.play().catch(function(){enterSite()});
-      });
-    }
-  },800);
+  /* === Start Video + Musik gleichzeitig mit Ton im selben User-Gesture === */
+  vid.muted=false;
+  vid.currentTime=0;
+
+  var vPromise=vid.play();
+  var aPromise=au.play();
+
+  /* Musik-Button einblenden */
+  var muBtn=document.getElementById('muBtn');
+  muBtn.classList.add('on');
+
+  if(aPromise!==undefined){
+    aPromise.then(function(){muBtn.textContent='♫';mp=true;}).catch(function(){});
+  }
+
+  if(vPromise!==undefined){
+    vPromise.catch(function(){
+      /* Falls Video mit Ton blockiert wird (z.B. iOS ohne Interaktion): stumm starten */
+      vid.muted=true;
+      vid.play().catch(function(){enterSite();});
+    });
+  }
 }
 
 /* Video ends → enter site */
@@ -640,21 +640,4 @@ document.querySelectorAll('.nav-l a').forEach(function(a){
       gx.fillStyle='#d4b96a';
       gx.beginPath();gx.arc(p.x,p.y,p.r*3,0,6.28);gx.fill();
 
-      /* Gold core */
-      gx.globalAlpha=alpha;
-      gx.fillStyle='#d4b96a';
-      gx.beginPath();gx.arc(p.x,p.y,p.r,0,6.28);gx.fill();
-
-      /* Bright center sparkle */
-      gx.globalAlpha=alpha*.7;
-      gx.fillStyle='#fff';
-      gx.beginPath();gx.arc(p.x,p.y,p.r*.35,0,6.28);gx.fill();
-    }
-    gx.globalAlpha=1;
-    requestAnimationFrame(drawDust);
-  }
-  drawDust();
-})();
-</script>
-</body>
-</html>
+      /* Gold core
