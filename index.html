@@ -390,7 +390,7 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
       </div>
       <div class="bm-name">Nisrine</div>
       <div class="bm-role" data-de="Trauzeugin" data-tr="Nedime">Trauzeugin</div>
-      <a href="/cdn-cgi/l/email-protection#85f5e9e4f1ffede4e9f1e0f7c5edeaf1e8e4ece9abe1e0" class="bm-mail"><span class="__cf_email__" data-cfemail="6d1d010c1917050c0119081f2d050219000c0401430908">[email&#160;protected]</span></a>
+      <a href="/cdn-cgi/l/email-protection#0d7d616c7977656c6179687f4d656279606c6461236968" class="bm-mail"><span class="__cf_email__" data-cfemail="6e1e020f1a14060f021a0b1c2e06011a030f0702400a0b">[email&#160;protected]</span></a>
       <a href="tel:01551234556" class="bm-mail">0155 1234556</a>
     </div>
     <div class="bm-card">
@@ -400,7 +400,7 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
       </div>
       <div class="bm-name">Lina</div>
       <div class="bm-role" data-de="Trauzeugin" data-tr="Nedime">Trauzeugin</div>
-      <a href="/cdn-cgi/l/email-protection#6d1d010c1917050c0119081f5f2d050219000c0401430908" class="bm-mail"><span class="__cf_email__" data-cfemail="03736f6277796b626f77667131436b6c776e626a6f2d6766">[email&#160;protected]</span></a>
+      <a href="/cdn-cgi/l/email-protection#8efee2effaf4e6efe2faebfcbccee6e1fae3efe7e2a0eaeb" class="bm-mail"><span class="__cf_email__" data-cfemail="9cecf0fde8e6f4fdf0e8f9eeaedcf4f3e8f1fdf5f0b2f8f9">[email&#160;protected]</span></a>
       <a href="tel:015561234567" class="bm-mail">0155 61234567</a>
     </div>
   </div>
@@ -438,15 +438,14 @@ var au=document.getElementById('bgMusic');
 var mp=false;
 var chosen=false;
 
-/* ===== SHOW FIRST FRAME ON LOAD ===== */
-function showFirstFrame(){
+/* ===== ERSTER FRAME SOFORT ANZEIGEN ===== */
+vid.muted=true;
+vid.play().then(function(){
+  vid.pause();
   vid.currentTime=0.001;
-}
-if(vid.readyState>=1){
-  showFirstFrame();
-} else {
-  vid.addEventListener('loadedmetadata', showFirstFrame, {once:true});
-}
+}).catch(function(){
+  vid.currentTime=0.001;
+});
 
 /* ===== TAP LEFT = DEUTSCH, TAP RIGHT = TÜRKÇE ===== */
 document.getElementById('zoneLeft').addEventListener('click',function(){pick('de')});
