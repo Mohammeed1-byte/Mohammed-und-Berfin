@@ -251,10 +251,6 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 .fd{font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:4px;color:rgba(255,255,255,.3);margin-top:8px;font-weight:300}
 .fh{margin-top:14px;font-size:12px;color:#d4c49b;opacity:.5}
 
-/* --- Music --- */
-.mu{position:fixed;bottom:20px;right:20px;z-index:9999;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.45);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 4px 24px rgba(0,0,0,.06),inset 0 1px 0 rgba(255,255,255,.6);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;opacity:0;pointer-events:none;transition:all .3s}
-.mu.on{opacity:1;pointer-events:auto}
-.mu:hover{transform:scale(1.08)}
 
 /* --- Reveal (blur + fade) --- */
 .rv{opacity:0;transform:translateY(24px);filter:blur(6px);transition:opacity .9s ease,transform .9s ease,filter .9s ease}
@@ -284,7 +280,6 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
   .nav-t{font-size:26px}
   .cd{gap:6px}.cb{min-width:56px;padding:14px 6px 12px}
   .wel{padding:60px 20px 16px}
-  .mu{width:38px;height:38px;font-size:15px;bottom:14px;right:14px}
 }
 </style>
 </head>
@@ -292,7 +287,7 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 
 <!-- ===== VIDEO INTRO ===== -->
 <div id="videoIntro">
-  <video id="introVideo" playsinline webkit-playsinline preload="metadata">
+  <video id="introVideo" playsinline webkit-playsinline preload="metadata" muted>
     <source src="intro.mp4" type="video/mp4">
   </video>
   <!-- Invisible click zones: left=Deutsch, right=Türkçe -->
@@ -307,9 +302,6 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
   <button class="skip-btn" id="skipBtn">Überspringen</button>
 </div>
 
-<!-- ===== MUSIC ===== -->
-<audio id="bgMusic" loop preload="auto"><source src="music.mp3" type="audio/mpeg"></audio>
-<button class="mu" id="muBtn" onclick="tMu()">♪</button>
 
 <!-- ===== GOLD DUST ===== -->
 <canvas id="goldDust"></canvas>
@@ -390,7 +382,7 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
       </div>
       <div class="bm-name">Nisrine</div>
       <div class="bm-role" data-de="Trauzeugin" data-tr="Nedime">Trauzeugin</div>
-      <a href="/cdn-cgi/l/email-protection#c9b9a5a8bdb3a1a8a5bdacbb89a1a6bda4a8a0a5e7adac" class="bm-mail"><span class="__cf_email__" data-cfemail="1f6f737e6b65777e736b7a6d5f77706b727e7673317b7a">[email&#160;protected]</span></a>
+      <a href="/cdn-cgi/l/email-protection#9aeaf6fbeee0f2fbf6eeffe8daf2f5eef7fbf3f6b4feff" class="bm-mail"><span class="__cf_email__" data-cfemail="23534f4257594b424f574651634b4c574e424a4f0d4746">[email&#160;protected]</span></a>
       <a href="tel:01551234556" class="bm-mail">0155 1234556</a>
     </div>
     <div class="bm-card">
@@ -400,7 +392,7 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
       </div>
       <div class="bm-name">Lina</div>
       <div class="bm-role" data-de="Trauzeugin" data-tr="Nedime">Trauzeugin</div>
-      <a href="/cdn-cgi/l/email-protection#7f0f131e0b05171e130b1a0d4d3f17100b121e1613511b1a" class="bm-mail"><span class="__cf_email__" data-cfemail="25554944515f4d444951405717654d4a5148444c490b4140">[email&#160;protected]</span></a>
+      <a href="/cdn-cgi/l/email-protection#4d3d212c3937252c2139283f7f0d252239202c2421632928" class="bm-mail"><span class="__cf_email__" data-cfemail="7e0e121f0a04161f120a1b0c4c3e16110a131f1712501a1b">[email&#160;protected]</span></a>
       <a href="tel:015561234567" class="bm-mail">0155 61234567</a>
     </div>
   </div>
@@ -434,8 +426,6 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 var lang='de';
 var vid=document.getElementById('introVideo');
-var au=document.getElementById('bgMusic');
-var mp=false;
 var chosen=false;
 
 /* Force first frame to show on mobile */
@@ -478,31 +468,22 @@ function pick(l){
   document.getElementById('zoneLeft').style.display='none';
   document.getElementById('zoneRight').style.display='none';
   document.getElementById('skipBtn').textContent=l==='de'?'Überspringen':'Atla';
-  setTimeout(function(){document.getElementById('skipBtn').classList.add('show');},800);
 
-  /* === Start Video + Musik gleichzeitig mit Ton im selben User-Gesture === */
-  /* Strategie: Video STUMM starten (klappt immer), dann sofort unmuten.
-     Browser erlauben das Unmuten sobald play() läuft – direkte unmuted-Starts
-     werden hingegen nach ~1s vom Browser gestoppt (Autoplay Policy). */
-  var muBtn=document.getElementById('muBtn');
-  muBtn.classList.add('on');
-
-  /* Musik starten */
-  au.play().then(function(){muBtn.textContent='♫';mp=true;}).catch(function(){});
-
-  /* Video: stumm starten, nach erfolgreicher play()-Promise unmuten */
-  vid.muted=true;
-  vid.currentTime=0;
-  var vPromise=vid.play();
-  if(vPromise!==undefined){
-    vPromise.then(function(){
-      /* Jetzt läuft das Video – Ton einschalten */
-      vid.muted=false;
-    }).catch(function(){
-      /* Falls play() komplett fehlschlägt: direkt zur Site */
-      enterSite();
-    });
-  }
+  /* Delay video start slightly so feedback is visible */
+  setTimeout(function(){
+    document.getElementById('skipBtn').classList.add('show');
+    vid.currentTime=0;
+    vid.muted=true;
+    var playPromise=vid.play();
+    if(playPromise!==undefined){
+      playPromise.then(function(){
+        vid.muted=false;
+      }).catch(function(){
+        vid.muted=true;
+        vid.play().catch(function(){enterSite()});
+      });
+    }
+  },800);
 }
 
 /* Video ends → enter site */
@@ -521,9 +502,6 @@ function enterSite(){
   intro.style.transition='opacity .8s ease';
   intro.style.opacity='0';
 
-  /* Music already started on language pick – just ensure button is visible */
-  document.getElementById('muBtn').classList.add('on');
-
   setTimeout(function(){
     intro.style.display='none';
     document.getElementById('site').classList.add('vis');
@@ -532,12 +510,6 @@ function enterSite(){
   },800);
 }
 
-/* ===== MUSIC TOGGLE ===== */
-function tMu(){
-  var b=document.getElementById('muBtn');
-  if(mp){au.pause();b.textContent='♪';mp=false}
-  else{au.play().then(function(){b.textContent='♫';mp=true}).catch(function(){})}
-}
 
 /* ===== COUNTDOWN ===== */
 function tick(){
