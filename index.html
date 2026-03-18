@@ -223,6 +223,17 @@ body.scrollable{overflow-y:auto;overflow-x:hidden;background:linear-gradient(180
 .fa{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease;font-size:15px;line-height:1.7;color:#4a4540;font-style:italic}
 .fi.op .fa{max-height:200px;padding-top:12px}
 
+/* --- Trauzeuginnen --- */
+.bm-row{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin-top:8px}
+.bm-card{display:flex;flex-direction:column;align-items:center;gap:10px}
+.bm-img-wrap{position:relative;width:140px;height:140px;border-radius:50%;overflow:hidden;background:rgba(255,255,255,.45);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.5);box-shadow:0 4px 24px rgba(0,0,0,.08),inset 0 1px 0 rgba(255,255,255,.6)}
+.bm-img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+.bm-placeholder{display:none;width:100%;height:100%;align-items:center;justify-content:center;font-family:'Great Vibes',cursive;font-size:56px;color:#c5c0b8;background:linear-gradient(135deg,#f7f3ee 0%,#ede8e0 100%)}
+.bm-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:#2e2a26;margin-top:4px}
+.bm-role{font-family:'Josefin Sans',sans-serif;font-size:9px;font-weight:300;letter-spacing:3px;text-transform:uppercase;color:#9e9890}
+.bm-mail{font-family:'Josefin Sans',sans-serif;font-size:10px;font-weight:300;letter-spacing:1px;color:#4a4540;text-decoration:none;border-bottom:1px solid rgba(0,0,0,.12);padding-bottom:1px;transition:color .3s,border-color .3s}
+.bm-mail:hover{color:#2e2a26;border-color:#2e2a26}
+
 /* --- RSVP --- */
 .rw{padding:70px 24px;text-align:center}
 .rf{max-width:380px;margin:28px auto 0;display:flex;flex-direction:column;gap:14px}
@@ -311,6 +322,7 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 <a href="#dress" data-de="Dresscode" data-tr="Kıyafet Kodu">Dresscode</a>
 <a href="#loc" data-de="Location" data-tr="Mekan">Location</a>
 <a href="#faq" data-de="FAQ" data-tr="SSS">FAQ</a>
+<a href="#bridesmaid" data-de="Trauzeuginnen" data-tr="Nedimeler">Trauzeuginnen</a>
 <a href="#rsvp" data-de="Zusage" data-tr="Katılım">RSVP</a>
 </div></nav>
 
@@ -330,10 +342,15 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 <div class="divider rv"><div class="divider-line"></div><div class="divider-icon">◆</div><div class="divider-line"></div></div>
 
 <div class="sec" id="sched"><div class="rv"><div class="sl" data-de="Der Tag" data-tr="O Gün">Der Tag</div><div class="sh" data-de="Ablauf" data-tr="Program Akışı">Ablauf</div><div class="sln"></div></div><div class="scl rv">
-<div class="sci"><div class="sct">17:00</div><div class="scc"><div class="sce" data-de="Empfang" data-tr="Karşılama">Empfang</div><div class="scd" data-de="Begrüßung der Gäste" data-tr="Misafirlerin karşılanması">Begrüßung der Gäste</div></div></div>
-<div class="sci"><div class="sct">18:00</div><div class="scc"><div class="sce" data-de="Einlauf des Ehepaares" data-tr="Çiftin Girişi">Einlauf des Ehepaares</div><div class="scd" data-de="Der große Moment" data-tr="Büyük an">Der große Moment</div></div></div>
-<div class="sci"><div class="sct">19:00</div><div class="scc"><div class="sce" data-de="Dinner" data-tr="Akşam Yemeği">Dinner</div><div class="scd" data-de="Gemeinsames Festessen" data-tr="Birlikte şölen yemeği">Gemeinsames Festessen</div></div></div>
-<div class="sci"><div class="sct">21:00</div><div class="scc"><div class="sce" data-de="Party & Tanz" data-tr="Parti & Dans">Party & Tanz</div><div class="scd" data-de="Feiert mit uns die ganze Nacht!" data-tr="Bütün gece bizimle kutlayın!">Feiert mit uns die ganze Nacht!</div></div></div>
+<div class="sci"><div class="sct">17:00</div><div class="scc"><div class="sce" data-de="Einlass" data-tr="Kapı Açılışı">Einlass</div><div class="scd" data-de="Begrüßung der Gäste" data-tr="Misafirlerin karşılanması">Begrüßung der Gäste</div></div></div>
+<div class="sci"><div class="sct">18:00</div><div class="scc"><div class="sce" data-de="Einlauf & Erster Tanz" data-tr="Giriş & İlk Dans">Einlauf & Erster Tanz</div><div class="scd" data-de="Einlauf von Braut & Bräutigam" data-tr="Gelin ve damadın görkemli girişi">Einlauf von Braut & Bräutigam</div></div></div>
+<div class="sci"><div class="sct">18:30</div><div class="scc"><div class="sce" data-de="Feiern" data-tr="Kutlama Başlıyor">Feiern</div><div class="scd" data-de="Die Party startet!" data-tr="Eğlence başlıyor!">Die Party startet!</div></div></div>
+<div class="sci"><div class="sct">19:30</div><div class="scc"><div class="sce" data-de="Abendessen" data-tr="Akşam Yemeği">Abendessen</div><div class="scd" data-de="Gemeinsames Festessen" data-tr="Birlikte şölen yemeği">Gemeinsames Festessen</div></div></div>
+<div class="sci"><div class="sct">20:30</div><div class="scc"><div class="sce" data-de="Feier & Tanz" data-tr="Eğlence & Dans">Feier & Tanz</div><div class="scd" data-de="Musik, Tanz & unvergessliche Momente" data-tr="Müzik, dans ve unutulmaz anlar">Musik, Tanz & unvergessliche Momente</div></div></div>
+<div class="sci"><div class="sct">22:00</div><div class="scc"><div class="sce" data-de="Geschenke" data-tr="Takı Töreni">Geschenke</div><div class="scd" data-de="Überreichung der Geschenke" data-tr="Hediyelerin sunulması">Überreichung der Geschenke</div></div></div>
+<div class="sci"><div class="sct">22:30</div><div class="scc"><div class="sce" data-de="Hochzeitstorte" data-tr="Düğün Pastası">Hochzeitstorte</div><div class="scd" data-de="Der süßeste Moment des Abends" data-tr="Gecenin en tatlı anı">Der süßeste Moment des Abends</div></div></div>
+<div class="sci"><div class="sct">23:00</div><div class="scc"><div class="sce" data-de="Afterparty" data-tr="Afterparty">Afterparty</div><div class="scd" data-de="Für alle, die noch nicht genug haben!" data-tr="Eğlence bitmek bilmiyor!">Für alle, die noch nicht genug haben!</div></div></div>
+<div class="sci"><div class="sct">00:30</div><div class="scc"><div class="sce" data-de="Gute Nacht" data-tr="İyi Geceler">Gute Nacht</div><div class="scd" data-de="Bis zum nächsten Wiedersehen" data-tr="Bir sonraki görüşmeye kadar">Bis zum nächsten Wiedersehen</div></div></div>
 </div></div>
 
 <div class="divider rv"><div class="divider-line"></div><div class="divider-icon">◆</div><div class="divider-line"></div></div>
@@ -349,7 +366,7 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 
 <div class="divider rv"><div class="divider-line"></div><div class="divider-icon">◆</div><div class="divider-line"></div></div>
 
-<div class="sec" id="dress"><div class="rv"><div class="sl" data-de="Bitte beachten" data-tr="Lütfen dikkat">Bitte beachten</div><div class="sh" data-de="Dresscode" data-tr="Kıyafet Kodu">Dresscode</div><div class="sln"></div></div><div class="dc rv"><div class="dt">GALA</div><div class="ds" data-de="Festliche Abendgarderobe" data-tr="Resmi gece kıyafeti">Festliche Abendgarderobe</div></div><p class="st rv" style="margin-top:22px" data-de="Herren im Anzug oder Smoking, Damen im langen Abendkleid." data-tr="Beyler takım elbise veya smokin, bayanlar uzun gece elbisesi.">Herren im Anzug oder Smoking, Damen im langen Abendkleid.</p></div>
+<div class="sec" id="dress"><div class="rv"><div class="sl" data-de="Bitte beachten" data-tr="Lütfen dikkat">Bitte beachten</div><div class="sh" data-de="Dresscode" data-tr="Kıyafet Kodu">Dresscode</div><div class="sln"></div></div><div class="dc rv"><div class="dt">GALA</div><div class="ds" data-de="Festliche Abendgarderobe" data-tr="Resmi gece kıyafeti">Festliche Abendgarderobe</div></div><p class="st rv" style="margin-top:22px" data-de="Herren im Anzug, Smoking oder Hemd, Damen im langen Abendkleid." data-tr="Beyler takım elbise, smokin veya gömlek, bayanlar uzun gece elbisesi.">Herren im Anzug, Smoking oder Hemd, Damen im langen Abendkleid.</p></div>
 
 <div class="divider rv"><div class="divider-line"></div><div class="divider-icon">◆</div><div class="divider-line"></div></div>
 
@@ -357,10 +374,44 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 
 <div class="divider rv"><div class="divider-line"></div><div class="divider-icon">◆</div><div class="divider-line"></div></div>
 
+<!-- ===== TRAUZEUGINNEN ===== -->
+<div class="sec" id="bridesmaid">
+  <div class="rv">
+    <div class="sl" data-de="Eure Ansprechpartnerinnen" data-tr="İletişim Kişileriniz">Eure Ansprechpartnerinnen</div>
+    <div class="sh" data-de="Die Trauzeuginnen" data-tr="Nedimeler">Die Trauzeuginnen</div>
+    <div class="sln"></div>
+    <p class="st" style="margin-bottom:32px" data-de="Falls ihr eine Überraschung für uns plant oder vor Ort ein Anliegen habt, wendet euch gerne an unsere Trauzeuginnen. Sie sind eure Ansprechpartnerinnen rund um unsere Hochzeit." data-tr="Bizim için bir sürpriz planlıyorsanız veya etkinlikte bir isteğiniz olursa, nedimelerimize ulaşabilirsiniz. Düğünümüzle ilgili her konuda size yardımcı olacaklar.">Falls ihr eine Überraschung für uns plant oder vor Ort ein Anliegen habt, wendet euch gerne an unsere Trauzeuginnen. Sie sind eure Ansprechpartnerinnen rund um unsere Hochzeit.</p>
+  </div>
+  <div class="bm-row rv">
+    <div class="bm-card">
+      <div class="bm-img-wrap">
+        <img src="nisrine.jpg" alt="Nisrine" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="bm-placeholder">N</div>
+      </div>
+      <div class="bm-name">Nisrine</div>
+      <div class="bm-role" data-de="Trauzeugin" data-tr="Nedime">Trauzeugin</div>
+      <a href="/cdn-cgi/l/email-protection#3f4f535e4b45575e534b5a4d7f57504b525e5653115b5a" class="bm-mail"><span class="__cf_email__" data-cfemail="1f6f737e6b65777e736b7a6d5f77706b727e7673317b7a">[email&#160;protected]</span></a>
+      <a href="tel:01551234556" class="bm-mail">0155 1234556</a>
+    </div>
+    <div class="bm-card">
+      <div class="bm-img-wrap">
+        <img src="lina.jpg" alt="Lina" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="bm-placeholder">L</div>
+      </div>
+      <div class="bm-name">Lina</div>
+      <div class="bm-role" data-de="Trauzeugin" data-tr="Nedime">Trauzeugin</div>
+      <a href="/cdn-cgi/l/email-protection#6e1e020f1a14060f021a0b1c5c2e06011a030f0702400a0b" class="bm-mail"><span class="__cf_email__" data-cfemail="96e6faf7e2ecfef7fae2f3e4a4d6fef9e2fbf7fffab8f2f3">[email&#160;protected]</span></a>
+      <a href="tel:015561234567" class="bm-mail">0155 61234567</a>
+    </div>
+  </div>
+</div>
+
+<div class="divider rv"><div class="divider-line"></div><div class="divider-icon">◆</div><div class="divider-line"></div></div>
+
 <div class="sec" id="faq"><div class="rv"><div class="sl" data-de="Noch Fragen?" data-tr="Sorularınız mı var?">Noch Fragen?</div><div class="sh" data-de="Häufige Fragen" data-tr="Sık Sorulan Sorular">Häufige Fragen</div><div class="sln"></div></div><div class="fl rv">
 <div class="fi" onclick="this.classList.toggle('op')"><div class="fq" data-de="Gibt es Parkplätze vor Ort?" data-tr="Orada otopark var mı?">Gibt es Parkplätze vor Ort?</div><div class="fa" data-de="Ja, es stehen ausreichend kostenlose Parkplätze direkt an der Location zur Verfügung." data-tr="Evet, mekânda yeterli ücretsiz otopark mevcuttur.">Ja, es stehen ausreichend kostenlose Parkplätze direkt an der Location zur Verfügung.</div></div>
 <div class="fi" onclick="this.classList.toggle('op')"><div class="fq" data-de="Dürfen wir Kinder mitbringen?" data-tr="Çocukları getirebilir miyiz?">Dürfen wir Kinder mitbringen?</div><div class="fa" data-de="Natürlich! Kinder sind herzlich willkommen. Es gibt einen separaten Spieleraum mit Kinderbetreuung – inklusive PS4 und weiteren Spielmöglichkeiten. Bitte gebt bei der Zusage die Anzahl der Personen an." data-tr="Tabii ki! Çocuklar hoş geldiniz. PS4 ve diğer oyun imkânlarıyla birlikte ayrı bir oyun odası ve çocuk bakımı mevcuttur. Lütfen katılım formunda kişi sayısını belirtin.">Natürlich! Kinder sind herzlich willkommen. Es gibt einen separaten Spieleraum mit Kinderbetreuung – inklusive PS4 und weiteren Spielmöglichkeiten. Bitte gebt bei der Zusage die Anzahl der Personen an.</div></div>
-<div class="fi" onclick="this.classList.toggle('op')"><div class="fq" data-de="Was ist der Dresscode?" data-tr="Kıyafet kodu nedir?">Was ist der Dresscode?</div><div class="fa" data-de="Wir feiern im Gala-Stil. Herren im Anzug oder Smoking, Damen im langen Abendkleid." data-tr="Gala tarzında kutluyoruz. Beyler takım elbise veya smokin, bayanlar uzun gece elbisesi.">Wir feiern im Gala-Stil. Herren im Anzug oder Smoking, Damen im langen Abendkleid.</div></div>
+<div class="fi" onclick="this.classList.toggle('op')"><div class="fq" data-de="Was ist der Dresscode?" data-tr="Kıyafet kodu nedir?">Was ist der Dresscode?</div><div class="fa" data-de="Wir feiern im Gala-Stil. Herren im Anzug, Smoking oder Hemd, Damen im langen Abendkleid." data-tr="Gala tarzında kutluyoruz. Beyler takım elbise, smokin veya gömlek, bayanlar uzun gece elbisesi.">Wir feiern im Gala-Stil. Herren im Anzug, Smoking oder Hemd, Damen im langen Abendkleid.</div></div>
 <div class="fi" onclick="this.classList.toggle('op')"><div class="fq" data-de="Bis wann sollen wir zusagen?" data-tr="Ne zamana kadar cevap vermeliyiz?">Bis wann sollen wir zusagen?</div><div class="fa" data-de="Bitte gebt uns bis zum 30. April 2026 Bescheid." data-tr="Lütfen 30 Nisan 2026'ya kadar bize haber verin.">Bitte gebt uns bis zum 30. April 2026 Bescheid.</div></div>
 </div></div>
 
@@ -380,7 +431,7 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 <footer class="foot"><div class="fn">Berfin & Mohammed</div><div class="fd">31 · 05 · 2026</div><div class="fh">♥</div></footer>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 var lang='de';
 var vid=document.getElementById('introVideo');
 var au=document.getElementById('bgMusic');
@@ -423,6 +474,14 @@ function pick(l){
     el.textContent=el.getAttribute('data-'+l);
   });
 
+  /* Start music on user interaction */
+  au.play().then(function(){
+    document.getElementById('muBtn').classList.add('on');
+    document.getElementById('muBtn').textContent='♫';mp=true;
+  }).catch(function(){
+    document.getElementById('muBtn').classList.add('on');
+  });
+
   /* Hide click zones, show skip */
   document.getElementById('zoneLeft').style.display='none';
   document.getElementById('zoneRight').style.display='none';
@@ -432,11 +491,16 @@ function pick(l){
   setTimeout(function(){
     document.getElementById('skipBtn').classList.add('show');
     vid.currentTime=0;
-    vid.muted=false;
-    vid.play().catch(function(){
-      vid.muted=true;
-      vid.play().catch(function(){enterSite()});
-    });
+    vid.muted=true;
+    var playPromise=vid.play();
+    if(playPromise!==undefined){
+      playPromise.then(function(){
+        vid.muted=false;
+      }).catch(function(){
+        vid.muted=true;
+        vid.play().catch(function(){enterSite()});
+      });
+    }
   },800);
 }
 
@@ -456,11 +520,8 @@ function enterSite(){
   intro.style.transition='opacity .8s ease';
   intro.style.opacity='0';
 
-  /* Start music */
+  /* Music already started on language pick – just ensure button is visible */
   document.getElementById('muBtn').classList.add('on');
-  au.play().then(function(){
-    document.getElementById('muBtn').textContent='♫';mp=true;
-  }).catch(function(){});
 
   setTimeout(function(){
     intro.style.display='none';
@@ -495,12 +556,40 @@ document.querySelectorAll('.rv').forEach(function(el){
 /* Using GIF now – plays automatically, no JS needed */
 
 /* ===== RSVP ===== */
+var RSVP_URL = 'https://script.google.com/macros/s/AKfycbyd7YW2-q1YuU68QekqcOZQPsH6z0SimsPxFkNeSCKoJru-1XJ5e7eKd5FvSEw5eHdYOw/exec';
+
 function rsvp(){
-  if(!document.getElementById('fN').value||!document.getElementById('fA').value){
-    alert(lang==='de'?'Bitte Name und Zusage ausfüllen.':'Lütfen adınızı ve katılım durumunuzu belirtin.');return;
+  var name=document.getElementById('fN').value.trim();
+  var phone=document.getElementById('fP').value.trim();
+  var guests=document.getElementById('fG').value;
+  var attend=document.getElementById('fA').value;
+  var msg=document.getElementById('fM').value.trim();
+
+  if(!name||!attend){
+    alert(lang==='de'?'Bitte Name und Zusage ausfüllen.':'Lütfen adınızı ve katılım durumunuzu belirtin.');
+    return;
   }
-  document.getElementById('rOk').style.display='block';
-  document.querySelectorAll('#rForm input,#rForm select,#rForm textarea,#rForm button').forEach(function(e){e.disabled=true;e.style.opacity='.4'});
+
+  /* Disable form while sending */
+  var fields=document.querySelectorAll('#rForm input,#rForm select,#rForm textarea,#rForm button');
+  fields.forEach(function(e){e.disabled=true;e.style.opacity='.4'});
+
+  fetch(RSVP_URL,{
+    method:'POST',
+    mode:'no-cors',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      name:name,
+      phone:phone,
+      guests:guests,
+      attend:attend==='y'?'Ja':'Nein',
+      message:msg
+    })
+  }).then(function(){
+    document.getElementById('rOk').style.display='block';
+  }).catch(function(){
+    document.getElementById('rOk').style.display='block';
+  });
 }
 
 /* ===== NAV ===== */
@@ -551,21 +640,4 @@ document.querySelectorAll('.nav-l a').forEach(function(a){
       gx.fillStyle='#d4b96a';
       gx.beginPath();gx.arc(p.x,p.y,p.r*3,0,6.28);gx.fill();
 
-      /* Gold core */
-      gx.globalAlpha=alpha;
-      gx.fillStyle='#d4b96a';
-      gx.beginPath();gx.arc(p.x,p.y,p.r,0,6.28);gx.fill();
-
-      /* Bright center sparkle */
-      gx.globalAlpha=alpha*.7;
-      gx.fillStyle='#fff';
-      gx.beginPath();gx.arc(p.x,p.y,p.r*.35,0,6.28);gx.fill();
-    }
-    gx.globalAlpha=1;
-    requestAnimationFrame(drawDust);
-  }
-  drawDust();
-})();
-</script>
-</body>
-</html>
+      /* Gold core
