@@ -223,17 +223,6 @@ body.scrollable{overflow-y:auto;overflow-x:hidden;background:linear-gradient(180
 .fa{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease;font-size:15px;line-height:1.7;color:#4a4540;font-style:italic}
 .fi.op .fa{max-height:200px;padding-top:12px}
 
-/* --- Trauzeuginnen --- */
-.bm-row{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin-top:8px}
-.bm-card{display:flex;flex-direction:column;align-items:center;gap:10px}
-.bm-img-wrap{position:relative;width:140px;height:140px;border-radius:50%;overflow:hidden;background:rgba(255,255,255,.45);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.5);box-shadow:0 4px 24px rgba(0,0,0,.08),inset 0 1px 0 rgba(255,255,255,.6)}
-.bm-img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
-.bm-placeholder{display:none;width:100%;height:100%;align-items:center;justify-content:center;font-family:'Great Vibes',cursive;font-size:56px;color:#c5c0b8;background:linear-gradient(135deg,#f7f3ee 0%,#ede8e0 100%)}
-.bm-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:#2e2a26;margin-top:4px}
-.bm-role{font-family:'Josefin Sans',sans-serif;font-size:9px;font-weight:300;letter-spacing:3px;text-transform:uppercase;color:#9e9890}
-.bm-mail{font-family:'Josefin Sans',sans-serif;font-size:10px;font-weight:300;letter-spacing:1px;color:#4a4540;text-decoration:none;border-bottom:1px solid rgba(0,0,0,.12);padding-bottom:1px;transition:color .3s,border-color .3s}
-.bm-mail:hover{color:#2e2a26;border-color:#2e2a26}
-
 /* --- RSVP --- */
 .rw{padding:70px 24px;text-align:center}
 .rf{max-width:380px;margin:28px auto 0;display:flex;flex-direction:column;gap:14px}
@@ -292,7 +281,7 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 
 <!-- ===== VIDEO INTRO ===== -->
 <div id="videoIntro">
-  <video id="introVideo" playsinline webkit-playsinline preload="metadata" muted autoplay poster="intro-poster.jpg">
+  <video id="introVideo" playsinline webkit-playsinline preload="metadata" muted>
     <source src="intro.mp4" type="video/mp4">
   </video>
   <!-- Invisible click zones: left=Deutsch, right=Türkçe -->
@@ -322,7 +311,6 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 <a href="#dress" data-de="Dresscode" data-tr="Kıyafet Kodu">Dresscode</a>
 <a href="#loc" data-de="Location" data-tr="Mekan">Location</a>
 <a href="#faq" data-de="FAQ" data-tr="SSS">FAQ</a>
-<a href="#bridesmaid" data-de="Trauzeuginnen" data-tr="Nedimeler">Trauzeuginnen</a>
 <a href="#rsvp" data-de="Zusage" data-tr="Katılım">RSVP</a>
 </div></nav>
 
@@ -342,15 +330,10 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 <div class="divider rv"><div class="divider-line"></div><div class="divider-icon">◆</div><div class="divider-line"></div></div>
 
 <div class="sec" id="sched"><div class="rv"><div class="sl" data-de="Der Tag" data-tr="O Gün">Der Tag</div><div class="sh" data-de="Ablauf" data-tr="Program Akışı">Ablauf</div><div class="sln"></div></div><div class="scl rv">
-<div class="sci"><div class="sct">17:00</div><div class="scc"><div class="sce" data-de="Einlass" data-tr="Kapı Açılışı">Einlass</div><div class="scd" data-de="Begrüßung der Gäste" data-tr="Misafirlerin karşılanması">Begrüßung der Gäste</div></div></div>
-<div class="sci"><div class="sct">18:00</div><div class="scc"><div class="sce" data-de="Einlauf & Erster Tanz" data-tr="Giriş & İlk Dans">Einlauf & Erster Tanz</div><div class="scd" data-de="Einlauf von Braut & Bräutigam" data-tr="Gelin ve damadın görkemli girişi">Einlauf von Braut & Bräutigam</div></div></div>
-<div class="sci"><div class="sct">18:30</div><div class="scc"><div class="sce" data-de="Feiern" data-tr="Kutlama Başlıyor">Feiern</div><div class="scd" data-de="Die Party startet!" data-tr="Eğlence başlıyor!">Die Party startet!</div></div></div>
-<div class="sci"><div class="sct">19:30</div><div class="scc"><div class="sce" data-de="Abendessen" data-tr="Akşam Yemeği">Abendessen</div><div class="scd" data-de="Gemeinsames Festessen" data-tr="Birlikte şölen yemeği">Gemeinsames Festessen</div></div></div>
-<div class="sci"><div class="sct">20:30</div><div class="scc"><div class="sce" data-de="Feier & Tanz" data-tr="Eğlence & Dans">Feier & Tanz</div><div class="scd" data-de="Musik, Tanz & unvergessliche Momente" data-tr="Müzik, dans ve unutulmaz anlar">Musik, Tanz & unvergessliche Momente</div></div></div>
-<div class="sci"><div class="sct">22:00</div><div class="scc"><div class="sce" data-de="Geschenke" data-tr="Hediye Töreni">Geschenke</div><div class="scd" data-de="Überreichung der Geschenke" data-tr="Hediyelerin sunulması">Überreichung der Geschenke</div></div></div>
-<div class="sci"><div class="sct">22:30</div><div class="scc"><div class="sce" data-de="Hochzeitstorte" data-tr="Düğün Pastası">Hochzeitstorte</div><div class="scd" data-de="Der süßeste Moment des Abends" data-tr="Gecenin en tatlı anı">Der süßeste Moment des Abends</div></div></div>
-<div class="sci"><div class="sct">23:00</div><div class="scc"><div class="sce" data-de="Afterparty" data-tr="Afterparty">Afterparty</div><div class="scd" data-de="Für alle, die noch nicht genug haben!" data-tr="Eğlence bitmek bilmiyor!">Für alle, die noch nicht genug haben!</div></div></div>
-<div class="sci"><div class="sct">00:30</div><div class="scc"><div class="sce" data-de="Gute Nacht" data-tr="İyi Geceler">Gute Nacht</div><div class="scd" data-de="Bis zum nächsten Wiedersehen" data-tr="Bir sonraki görüşmeye kadar">Bis zum nächsten Wiedersehen</div></div></div>
+<div class="sci"><div class="sct">17:00</div><div class="scc"><div class="sce" data-de="Empfang" data-tr="Karşılama">Empfang</div><div class="scd" data-de="Begrüßung der Gäste" data-tr="Misafirlerin karşılanması">Begrüßung der Gäste</div></div></div>
+<div class="sci"><div class="sct">18:00</div><div class="scc"><div class="sce" data-de="Einlauf des Ehepaares" data-tr="Çiftin Girişi">Einlauf des Ehepaares</div><div class="scd" data-de="Der große Moment" data-tr="Büyük an">Der große Moment</div></div></div>
+<div class="sci"><div class="sct">19:00</div><div class="scc"><div class="sce" data-de="Dinner" data-tr="Akşam Yemeği">Dinner</div><div class="scd" data-de="Gemeinsames Festessen" data-tr="Birlikte şölen yemeği">Gemeinsames Festessen</div></div></div>
+<div class="sci"><div class="sct">21:00</div><div class="scc"><div class="sce" data-de="Party & Tanz" data-tr="Parti & Dans">Party & Tanz</div><div class="scd" data-de="Feiert mit uns die ganze Nacht!" data-tr="Bütün gece bizimle kutlayın!">Feiert mit uns die ganze Nacht!</div></div></div>
 </div></div>
 
 <div class="divider rv"><div class="divider-line"></div><div class="divider-icon">◆</div><div class="divider-line"></div></div>
@@ -383,38 +366,6 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 
 <div class="divider rv"><div class="divider-line"></div><div class="divider-icon">◆</div><div class="divider-line"></div></div>
 
-<!-- ===== TRAUZEUGINNEN ===== -->
-<div class="sec" id="bridesmaid">
-  <div class="rv">
-    <div class="sl" data-de="Eure Ansprechpartnerinnen" data-tr="İletişim Kişileriniz">Eure Ansprechpartnerinnen</div>
-    <div class="sh" data-de="Die Trauzeuginnen" data-tr="Nedimeler">Die Trauzeuginnen</div>
-    <div class="sln"></div>
-    <p class="st" style="margin-bottom:32px" data-de="Für besondere Wünsche, Allergien oder individuelle Planung – wendet euch gerne direkt an unsere Trauzeuginnen." data-tr="Özel istekler, alerjiler veya bireysel planlama için nedimelerimizle iletişime geçebilirsiniz.">Für besondere Wünsche, Allergien oder individuelle Planung – wendet euch gerne direkt an unsere Trauzeuginnen.</p>
-  </div>
-  <div class="bm-row rv">
-    <div class="bm-card">
-      <div class="bm-img-wrap">
-        <img src="nisrine.jpg" alt="Nisrine" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="bm-placeholder">N</div>
-      </div>
-      <div class="bm-name">Nisrine</div>
-      <div class="bm-role" data-de="Trauzeugin" data-tr="Nedime">Trauzeugin</div>
-      <a href="mailto:platzhalter@hotmail.de" class="bm-mail">platzhalter@hotmail.de</a>
-    </div>
-    <div class="bm-card">
-      <div class="bm-img-wrap">
-        <img src="lina.jpg" alt="Lina" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="bm-placeholder">L</div>
-      </div>
-      <div class="bm-name">Lina</div>
-      <div class="bm-role" data-de="Trauzeugin" data-tr="Nedime">Trauzeugin</div>
-      <a href="mailto:platzhalter2@hotmail.de" class="bm-mail">platzhalter2@hotmail.de</a>
-    </div>
-  </div>
-</div>
-
-<div class="divider rv"><div class="divider-line"></div><div class="divider-icon">◆</div><div class="divider-line"></div></div>
-
 <div class="rw" id="rsvp"><div class="rv"><div class="sl" data-de="Feiert ihr mit?" data-tr="Bizimle kutlayacak mısınız?">Feiert ihr mit?</div><div class="sh" data-de="Zusage" data-tr="Katılım">RSVP</div><div class="sln"></div><p class="st" data-de="Bitte teilt uns bis zum 30. April 2026 mit, ob ihr dabei seid." data-tr="Lütfen 30 Nisan 2026'ya kadar katılıp katılmayacağınızı bildirin.">Bitte teilt uns bis zum 30. April 2026 mit, ob ihr dabei seid.</p></div>
 <div class="rf rv" id="rForm">
 <input type="text" class="ri" id="fN" placeholder="Vollständiger Name">
@@ -436,12 +387,9 @@ var au=document.getElementById('bgMusic');
 var mp=false;
 var chosen=false;
 
-/* Safari/iPhone-safe intro start */
-vid.setAttribute('playsinline','');
-vid.setAttribute('webkit-playsinline','');
-vid.muted=true;
-vid.defaultMuted=true;
-vid.preload='metadata';
+/* Force first frame to show on mobile */
+vid.addEventListener('loadedmetadata',function(){vid.currentTime=0.001});
+vid.currentTime=0.001;
 
 /* ===== TAP LEFT = DEUTSCH, TAP RIGHT = TÜRKÇE ===== */
 document.getElementById('zoneLeft').addEventListener('click',function(){pick('de')});
@@ -462,6 +410,14 @@ function pick(l){
   dark.classList.add('on');
   lbl.classList.add('on');
 
+  /* Fade out feedback after 1.2s */
+  setTimeout(function(){
+    lbl.classList.remove('on');
+    lbl.classList.add('out');
+    bright.classList.remove('on');
+    dark.classList.remove('on');
+  },1200);
+
   /* Apply language */
   document.querySelectorAll('[data-'+l+']').forEach(function(el){
     el.textContent=el.getAttribute('data-'+l);
@@ -471,31 +427,17 @@ function pick(l){
   document.getElementById('zoneLeft').style.display='none';
   document.getElementById('zoneRight').style.display='none';
   document.getElementById('skipBtn').textContent=l==='de'?'Überspringen':'Atla';
-  document.getElementById('skipBtn').classList.add('show');
 
-  /* Safari/iPhone-safe video start: immediate, inline, muted */
-  vid.pause();
-  vid.muted=true;
-  vid.defaultMuted=true;
-
-  try{
-    vid.currentTime=0;
-  }catch(e){}
-
-  var playPromise=vid.play();
-  if(playPromise&&typeof playPromise.catch==='function'){
-    playPromise.catch(function(){
-      enterSite();
-    });
-  }
-
-  /* Fade out feedback after 1.2s */
+  /* Delay video start slightly so feedback is visible */
   setTimeout(function(){
-    lbl.classList.remove('on');
-    lbl.classList.add('out');
-    bright.classList.remove('on');
-    dark.classList.remove('on');
-  },1200);
+    document.getElementById('skipBtn').classList.add('show');
+    vid.currentTime=0;
+    vid.muted=false;
+    vid.play().catch(function(){
+      vid.muted=true;
+      vid.play().catch(function(){enterSite()});
+    });
+  },800);
 }
 
 /* Video ends → enter site */
@@ -511,9 +453,6 @@ document.getElementById('skipBtn').addEventListener('click',function(e){
 /* ===== ENTER MAIN SITE ===== */
 function enterSite(){
   var intro=document.getElementById('videoIntro');
-  if(!intro||intro.dataset.entered==='1')return;
-  intro.dataset.entered='1';
-
   intro.style.transition='opacity .8s ease';
   intro.style.opacity='0';
 
@@ -556,40 +495,12 @@ document.querySelectorAll('.rv').forEach(function(el){
 /* Using GIF now – plays automatically, no JS needed */
 
 /* ===== RSVP ===== */
-var RSVP_URL = 'https://script.google.com/macros/s/AKfycbyd7YW2-q1YuU68QekqcOZQPsH6z0SimsPxFkNeSCKoJru-1XJ5e7eKd5FvSEw5eHdYOw/exec';
-
 function rsvp(){
-  var name=document.getElementById('fN').value.trim();
-  var phone=document.getElementById('fP').value.trim();
-  var guests=document.getElementById('fG').value;
-  var attend=document.getElementById('fA').value;
-  var msg=document.getElementById('fM').value.trim();
-
-  if(!name||!attend){
-    alert(lang==='de'?'Bitte Name und Zusage ausfüllen.':'Lütfen adınızı ve katılım durumunuzu belirtin.');
-    return;
+  if(!document.getElementById('fN').value||!document.getElementById('fA').value){
+    alert(lang==='de'?'Bitte Name und Zusage ausfüllen.':'Lütfen adınızı ve katılım durumunuzu belirtin.');return;
   }
-
-  /* Disable form while sending */
-  var fields=document.querySelectorAll('#rForm input,#rForm select,#rForm textarea,#rForm button');
-  fields.forEach(function(e){e.disabled=true;e.style.opacity='.4'});
-
-  fetch(RSVP_URL,{
-    method:'POST',
-    mode:'no-cors',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({
-      name:name,
-      phone:phone,
-      guests:guests,
-      attend:attend==='y'?'Ja':'Nein',
-      message:msg
-    })
-  }).then(function(){
-    document.getElementById('rOk').style.display='block';
-  }).catch(function(){
-    document.getElementById('rOk').style.display='block';
-  });
+  document.getElementById('rOk').style.display='block';
+  document.querySelectorAll('#rForm input,#rForm select,#rForm textarea,#rForm button').forEach(function(e){e.disabled=true;e.style.opacity='.4'});
 }
 
 /* ===== NAV ===== */
