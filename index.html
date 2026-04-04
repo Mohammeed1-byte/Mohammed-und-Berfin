@@ -418,13 +418,20 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 
 <div class="rw" id="rsvp"><div class="rv"><div class="sl" data-de="Feiert ihr mit?" data-tr="Bizimle kutlayacak mısınız?">Feiert ihr mit?</div><div class="sh" data-de="Zusage" data-tr="Katılım">RSVP</div><div class="sln"></div><p class="st" data-de="Bitte teilt uns bis zum 30. April 2026 mit, ob ihr dabei seid." data-tr="Lütfen 30 Nisan 2026'ya kadar katılıp katılmayacağınızı bildirin.">Bitte teilt uns bis zum 30. April 2026 mit, ob ihr dabei seid.</p></div>
 <div class="rf rv" id="rForm">
-<input type="text" class="ri" id="fN" placeholder="Vollständiger Name">
-<input type="tel" class="ri" id="fP" placeholder="Telefonnummer">
-<select class="ri" id="fG"><option value="" disabled selected>Anzahl der Personen</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option></select>
-<select class="ri" id="fA"><option value="" disabled selected>Seid ihr dabei?</option><option value="y">Ja, wir kommen gerne!</option><option value="n">Leider können wir nicht</option></select>
-<textarea class="ri" rows="3" id="fM" placeholder="Nachricht (optional)" style="resize:none"></textarea>
-<button class="rb" onclick="rsvp()">Absenden</button>
-<div class="rok" id="rOk">Vielen Dank! Wir freuen uns auf euch. ♥</div>
+<input type="text" class="ri" id="fN" placeholder="Vollständiger Name" data-de="Vollständiger Name" data-tr="Tam Adınız">
+<input type="tel" class="ri" id="fP" placeholder="Telefonnummer" data-de="Telefonnummer" data-tr="Telefon Numarası">
+<select class="ri" id="fG">
+  <option value="" disabled selected data-de="Anzahl der Personen" data-tr="Kişi Sayısı">Anzahl der Personen</option>
+  <option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option>
+</select>
+<select class="ri" id="fA">
+  <option value="" disabled selected data-de="Seid ihr dabei?" data-tr="Katılıyor musunuz?">Seid ihr dabei?</option>
+  <option value="y" data-de="Ja, wir kommen gerne!" data-tr="Evet, geleceğiz!">Ja, wir kommen gerne!</option>
+  <option value="n" data-de="Leider können wir nicht" data-tr="Maalesef gelemeyeceğiz">Leider können wir nicht</option>
+</select>
+<textarea class="ri" rows="3" id="fM" placeholder="Nachricht (optional)" style="resize:none" data-de="Nachricht (optional)" data-tr="Mesaj (isteğe bağlı)"></textarea>
+<button class="rb" onclick="rsvp()" data-de="Absenden" data-tr="Gönder">Absenden</button>
+<div class="rok" id="rOk" data-de="Vielen Dank! Wir freuen uns auf euch. ♥" data-tr="Çok teşekkürler! Sizi görmek için sabırsızlanıyoruz. ♥">Vielen Dank! Wir freuen uns auf euch. ♥</div>
 </div></div>
 
 <footer class="foot"><div class="fn">Berfin & Mohammed</div><div class="fd">31 · 05 · 2026</div><div class="fh">♥</div></footer>
@@ -470,7 +477,12 @@ function pick(l){
 
   /* Apply language */
   document.querySelectorAll('[data-'+l+']').forEach(function(el){
-    el.textContent=el.getAttribute('data-'+l);
+    var tag=el.tagName.toLowerCase();
+    if(tag==='input'||tag==='textarea'){
+      el.placeholder=el.getAttribute('data-'+l);
+    } else {
+      el.textContent=el.getAttribute('data-'+l);
+    }
   });
 
   /* Start music on user interaction */
