@@ -207,6 +207,30 @@ body.scrollable{overflow-y:auto;overflow-x:hidden;background:linear-gradient(180
 .dt{font-family:'Josefin Sans',sans-serif;font-size:24px;font-weight:200;letter-spacing:12px;text-transform:uppercase;color:#2e2a26;margin-bottom:8px}
 .ds{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:#9e9890}
 
+/* --- Braut Shimmer --- */
+.braut-shimmer{
+  background:linear-gradient(
+    90deg,
+    #4a4540 0%,
+    #4a4540 30%,
+    #d4b96a 45%,
+    #f5e6b0 50%,
+    #d4b96a 55%,
+    #4a4540 70%,
+    #4a4540 100%
+  );
+  background-size:200% auto;
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:shimmerFlow 4s linear infinite;
+  font-style:italic;
+}
+@keyframes shimmerFlow{
+  0%{background-position:200% center}
+  100%{background-position:-200% center}
+}
+
 /* --- Map --- */
 .mf{margin-top:24px;border:1px solid rgba(0,0,0,.05);overflow:hidden;background:#fff;border-radius:2px}
 .mf iframe{width:100%;height:300px;border:none;display:block}
@@ -366,7 +390,7 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 
 <div class="divider rv"><div class="divider-line"></div><div class="divider-icon">◆</div><div class="divider-line"></div></div>
 
-<div class="sec" id="dress"><div class="rv"><div class="sl" data-de="Bitte beachten" data-tr="Lütfen dikkat">Bitte beachten</div><div class="sh" data-de="Dresscode" data-tr="Kıyafet Kodu">Dresscode</div><div class="sln"></div></div><div class="dc rv"><div class="dt">GALA</div><div class="ds" data-de="Festliche Abendgarderobe" data-tr="Resmi gece kıyafeti">Festliche Abendgarderobe</div></div><p class="st rv" style="margin-top:22px" data-de="Herren im Anzug, Smoking oder Hemd, Damen im langen Abendkleid." data-tr="Beyler takım elbise, smokin veya gömlek, bayanlar uzun gece elbisesi.">Herren im Anzug, Smoking oder Hemd, Damen im langen Abendkleid.</p></div>
+<div class="sec" id="dress"><div class="rv"><div class="sl" data-de="Bitte beachten" data-tr="Lütfen dikkat">Bitte beachten</div><div class="sh" data-de="Dresscode" data-tr="Kıyafet Kodu">Dresscode</div><div class="sln"></div></div><div class="dc rv"><div class="dt">GALA</div><div class="ds" data-de="Festliche Abendgarderobe" data-tr="Resmi gece kıyafeti">Festliche Abendgarderobe</div></div><p class="st rv" style="margin-top:22px" data-de="Herren im Anzug, Smoking oder Hemd, Damen im langen Abendkleid. Die Braut strahlt in Weiß – wir freuen uns bei allen anderen Damen über jede andere Farbe." data-tr="Beyler takım elbise, smokin veya gömlek, bayanlar uzun gece elbisesi. Gelin beyaz içinde parlıyor – diğer tüm bayanların farklı renklerde gelmesinden mutluluk duyarız.">Herren im Anzug, Smoking oder Hemd, Damen im langen Abendkleid.<br><span class="braut-shimmer">Die Braut strahlt in Weiß – wir freuen uns bei allen anderen Damen über jede andere Farbe.</span></p></div>
 
 <div class="divider rv"><div class="divider-line"></div><div class="divider-icon">◆</div><div class="divider-line"></div></div>
 
@@ -380,7 +404,7 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
     <div class="sl" data-de="Eure Ansprechpartnerinnen" data-tr="İletişim Kişileriniz">Eure Ansprechpartnerinnen</div>
     <div class="sh" data-de="Die Ansprechpartnerinnen" data-tr="Nedimeler">Die Ansprechpartnerinnen</div>
     <div class="sln"></div>
-    <p class="st" style="margin-bottom:32px" data-de="Falls ihr eine Überraschung für uns plant oder vor Ort ein Anliegen habt, wendet euch gerne an unsere Ansprechpartnerinnen." data-tr="Bizim için bir sürpriz planlıyorsanız veya etkinlikte bir isteğiniz olursa, nedimelerimize ulaşabilirsiniz. Düğünümüzle ilgili her konuda size yardımcı olacaklar.">Falls ihr eine Überraschung für uns plant oder vor Ort ein Anliegen habt, wendet euch gerne an unsere Trauzeuginnen. Sie sind eure Ansprechpartnerinnen rund um unsere Hochzeit.</p>
+    <p class="st" style="margin-bottom:32px" data-de="Falls ihr eine Überraschung für uns plant, eine Rede halten möchtet oder vor Ort ein Anliegen habt, dürft ihr euch jederzeit vertrauensvoll an unsere beiden Herzensmenschen wenden ☺️" data-tr="Bizim için bir sürpriz planlıyorsanız, konuşma yapmak istiyorsanız veya etkinlikte bir isteğiniz olursa, her zaman güvenle iki can dostlarımıza başvurabilirsiniz ☺️">Falls ihr eine Überraschung für uns plant, eine Rede halten möchtet oder vor Ort ein Anliegen habt, dürft ihr euch jederzeit vertrauensvoll an unsere beiden Herzensmenschen wenden ☺️</p>
   </div>
   <div class="bm-row rv">
     <div class="bm-card">
@@ -389,7 +413,6 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
         <div class="bm-placeholder">N</div>
       </div>
       <div class="bm-name">Nisrine</div>
-      <div class="bm-role" data-de="Ansprechpartnerin" data-tr="Nedime">Ansprechpartnerin</div>
       <a href="tel:+491789182769" class="bm-mail">+49178 9182769</a>
     </div>
     <div class="bm-card">
@@ -399,7 +422,6 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 
       </div>
       <div class="bm-name">Lina</div>
-      <div class="bm-role" data-de="Ansprechpartnerin" data-tr="Nedime">Ansprechpartnerin</div>
       <a href="tel:+491777267303" class="bm-mail">+49177 7267303</a>
     </div>
   </div>
@@ -409,6 +431,7 @@ select.ri{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 
 <div class="sec" id="faq"><div class="rv"><div class="sl" data-de="Noch Fragen?" data-tr="Sorularınız mı var?">Noch Fragen?</div><div class="sh" data-de="Häufige Fragen" data-tr="Sık Sorulan Sorular">Häufige Fragen</div><div class="sln"></div></div><div class="fl rv">
 <div class="fi" onclick="this.classList.toggle('op')"><div class="fq" data-de="Gibt es Parkplätze vor Ort?" data-tr="Orada otopark var mı?">Gibt es Parkplätze vor Ort?</div><div class="fa" data-de="Ja, es stehen ausreichend kostenlose Parkplätze direkt an der Location zur Verfügung." data-tr="Evet, mekânda yeterli ücretsiz otopark mevcuttur.">Ja, es stehen ausreichend kostenlose Parkplätze direkt an der Location zur Verfügung.</div></div>
+<div class="fi" onclick="this.classList.toggle('op')"><div class="fq" data-de="Dürfen wir jemanden mitbringen?" data-tr="Birini getirebilir miyiz?">Dürfen wir jemanden mitbringen?</div><div class="fa" data-de="Wir möchten diesen besonderen Tag im engsten Kreis mit unseren Liebsten feiern. Da alle Gäste fest eingeplante Sitzplätze haben, bitten wir euch, nur die auf der Einladung genannten Personen mitzubringen – vielen Dank für euer Verständnis!" data-tr="Bu özel günü en yakınlarımızla birlikte kutlamak istiyoruz. Tüm misafirlerin sabit oturma yerleri olduğundan, lütfen yalnızca davetiyede adı geçen kişilerle gelin – anlayışınız için teşekkür ederiz!">Wir möchten diesen besonderen Tag im engsten Kreis mit unseren Liebsten feiern. Da alle Gäste fest eingeplante Sitzplätze haben, bitten wir euch, nur die auf der Einladung genannten Personen mitzubringen – vielen Dank für euer Verständnis!</div></div>
 <div class="fi" onclick="this.classList.toggle('op')"><div class="fq" data-de="Dürfen wir Kinder mitbringen?" data-tr="Çocukları getirebilir miyiz?">Dürfen wir Kinder mitbringen?</div><div class="fa" data-de="Natürlich! Kinder sind herzlich willkommen. Es gibt einen separaten Spieleraum mit Kinderbetreuung – inklusive PS4 und weiteren Spielmöglichkeiten. Bitte gebt bei der Zusage die Anzahl der Personen an." data-tr="Tabii ki! Çocuklar hoş geldiniz. PS4 ve diğer oyun imkânlarıyla birlikte ayrı bir oyun odası ve çocuk bakımı mevcuttur. Lütfen katılım formunda kişi sayısını belirtin.">Natürlich! Kinder sind herzlich willkommen. Es gibt einen separaten Spieleraum mit Kinderbetreuung – inklusive PS4 und weiteren Spielmöglichkeiten. Bitte gebt bei der Zusage die Anzahl der Personen an.</div></div>
 <div class="fi" onclick="this.classList.toggle('op')"><div class="fq" data-de="Was ist der Dresscode?" data-tr="Kıyafet kodu nedir?">Was ist der Dresscode?</div><div class="fa" data-de="Wir feiern im Gala-Stil. Herren im Anzug, Smoking oder Hemd, Damen im langen Abendkleid." data-tr="Gala tarzında kutluyoruz. Beyler takım elbise, smokin veya gömlek, bayanlar uzun gece elbisesi.">Wir feiern im Gala-Stil. Herren im Anzug, Smoking oder Hemd, Damen im langen Abendkleid.</div></div>
 <div class="fi" onclick="this.classList.toggle('op')"><div class="fq" data-de="Bis wann sollen wir zusagen?" data-tr="Ne zamana kadar cevap vermeliyiz?">Bis wann sollen wir zusagen?</div><div class="fa" data-de="Bitte gebt uns bis zum 30. April 2026 Bescheid." data-tr="Lütfen 30 Nisan 2026'ya kadar bize haber verin.">Bitte gebt uns bis zum 30. April 2026 Bescheid.</div></div>
